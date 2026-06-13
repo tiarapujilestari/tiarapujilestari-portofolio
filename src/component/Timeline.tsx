@@ -161,28 +161,28 @@ const Timeline: React.FC = () => {
               </span>
 
               <p className="text-gray-300 text-xs md:text-sm italic leading-relaxed font-light relative z-10 html-light:text-gray-700">
-                "Tiara's ability to translate complex technical requirements
-                into a beautiful, performant UI is unmatched. A true
-                professional who understands the business value of good
-                engineering."
+                "The patient meal ordering application has greatly improved our
+                service workflow. It helps staff manage meal requests
+                efficiently while ensuring accuracy and a better experience for
+                patients."
               </p>
 
               <div className="flex items-center gap-3 mt-4 pt-4 border-t border-gray-800/40 relative z-10 html-light:border-gray-200">
                 <div className="w-9 h-9 rounded-full bg-slate-800 overflow-hidden border border-gray-700 html-light:border-gray-300">
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150"
-                    alt="Alex Rivers"
+                    src="../src/assets/sarah-maulida.png"
+                    alt="Sarah Maulida"
                     className="w-full h-full object-cover"
                   />
                 </div>
 
                 <div>
                   <h4 className="text-xs font-bold text-gray-200 html-light:text-gray-900">
-                    Alex Rivers
+                    Sarah Maulida
                   </h4>
 
                   <span className="text-[10px] text-gray-500 font-medium html-light:text-gray-400">
-                    CTO, CloudFlow
+                    Manager
                   </span>
                 </div>
               </div>
@@ -195,27 +195,28 @@ const Timeline: React.FC = () => {
               </span>
 
               <p className="text-gray-300 text-xs md:text-sm italic leading-relaxed font-light relative z-10 html-light:text-gray-700">
-                "Excellent communication and timely delivery. The code quality
-                delivered was exceptionally structured and required minimal
-                review before production deployment."
+                "An exceptional application that simplified patient meal
+                management, reduced errors, and enhanced service quality. The
+                intuitive design made it easy for our staff to adopt and use
+                effectively."
               </p>
 
               <div className="flex items-center gap-3 mt-4 pt-4 border-t border-gray-800/40 relative z-10 html-light:border-gray-200">
                 <div className="w-9 h-9 rounded-full bg-slate-800 overflow-hidden border border-gray-700 html-light:border-gray-300">
                   <img
                     src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150"
-                    alt="Sarah Jenkins"
+                    alt="Ranti Ramadhani"
                     className="w-full h-full object-cover"
                   />
                 </div>
 
                 <div>
                   <h4 className="text-xs font-bold text-gray-200 html-light:text-gray-900">
-                    Sarah Jenkins
+                    Ranti Ramadhani
                   </h4>
 
                   <span className="text-[10px] text-gray-500 font-medium html-light:text-gray-400">
-                    Product Director, AlphaCorp
+                    Head Umum
                   </span>
                 </div>
               </div>

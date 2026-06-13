@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Clock,
   ShieldCheck,
@@ -10,19 +10,77 @@ import {
   GitBranch,
 } from "lucide-react";
 
-const Skills: React.FC = () => {
+const Skills = () => {
+  // 1. Ambil kondisi hash langsung sebagai nilai awal (Initial State)
+  const [isVisible, setIsVisible] = useState<boolean>(
+    typeof window !== "undefined" && window.location.hash === "#skills",
+  );
+  const [isResetting, setIsResetting] = useState<boolean>(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.15,
+      },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    const handleHashChange = () => {
+      if (window.location.hash === "#skills") {
+        setIsResetting(true);
+        setIsVisible(false);
+
+        setTimeout(() => {
+          setIsResetting(false);
+          setIsVisible(true);
+        }, 50);
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    // 2. Baris error sinkronus yang sebelumnya ada di sini SEKARANG SUDAH DIHAPUS
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
   return (
     <section
       id="skills"
-      className="max-w-5xl w-full mx-auto px-6 mb-24 scroll-mt-28 relative"
+      ref={sectionRef}
+      className="max-w-5xl w-full mx-auto px-6 mb-24 scroll-mt-28 relative overflow-hidden"
     >
-      {/* BACKGROUND */}
+      {/* BACKGROUND BLUR */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[150px] pointer-events-none" />
 
       {/* MAIN GRID */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        {/* GRID KIRI */}
-        <div className="lg:col-span-7 flex flex-col justify-between space-y-10 w-full">
+        {/* GRID KIRI - MELUNCUR DARI KIRI */}
+        <div
+          className={`lg:col-span-7 flex flex-col justify-between space-y-10 w-full transform ${
+            isResetting
+              ? "transition-none"
+              : "transition-all duration-[1000ms] ease-out"
+          } ${
+            isVisible
+              ? "opacity-100 translate-x-0 filter blur-0"
+              : "opacity-0 -translate-x-20 filter blur-sm"
+          }`}
+        >
           {/* Narrative */}
           <div className="space-y-3">
             <h2 className="text-4xl md:text-5xl font-normal tracking-tight text-cyan-400">
@@ -45,7 +103,7 @@ const Skills: React.FC = () => {
 
             <div className="space-y-3 w-full">
               {/* CARD TIMELINESS */}
-              <div className="bg-[#0b1329]/40 backdrop-blur-sm border border-slate-800/60 p-5 rounded-2xl flex items-center gap-5 transition hover:border-slate-700/50">
+              <div className="bg-[#0b1329]/40 backdrop-blur-sm border border-slate-800/60 p-5 rounded-2xl flex items-center gap-5 transition duration-300 hover:border-cyan-500/30 hover:scale-[1.01]">
                 <div className="bg-[#050b18] p-3.5 rounded-xl border border-cyan-500/10 flex items-center justify-center shrink-0">
                   <Clock className="w-5 h-5 text-cyan-400" />
                 </div>
@@ -61,7 +119,7 @@ const Skills: React.FC = () => {
               </div>
 
               {/* CARD DETAIL ORIENTED */}
-              <div className="bg-[#0b1329]/40 backdrop-blur-sm border border-slate-800/60 p-5 rounded-2xl flex items-center gap-5 transition hover:border-slate-700/50">
+              <div className="bg-[#0b1329]/40 backdrop-blur-sm border border-slate-800/60 p-5 rounded-2xl flex items-center gap-5 transition duration-300 hover:border-cyan-500/30 hover:scale-[1.01]">
                 <div className="bg-[#050b18] p-3.5 rounded-xl border border-cyan-500/10 flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-5 h-5 text-cyan-400" />
                 </div>
@@ -79,16 +137,35 @@ const Skills: React.FC = () => {
           </div>
         </div>
 
-        {/* CORD STACK */}
-        <div className="lg:col-span-5 w-full bg-[#0b1329]/50 backdrop-blur-md border border-slate-800/70 p-8 md:p-10 rounded-[2.5rem] shadow-2xl flex flex-col justify-center relative">
+        {/* GRID KANAN - MELUNCUR DARI KANAN */}
+        <div
+          className={`lg:col-span-5 w-full bg-[#0b1329]/50 backdrop-blur-md border border-slate-800/70 p-8 md:p-10 rounded-[2.5rem] shadow-2xl flex flex-col justify-center relative transform ${
+            isResetting
+              ? "transition-none"
+              : "transition-all duration-[1000ms] ease-out"
+          } ${
+            isVisible
+              ? "opacity-100 translate-x-0 scale-100"
+              : "opacity-0 translate-x-20 scale-95"
+          }`}
+        >
           <h3 className="text-2xl font-normal text-center text-slate-200 tracking-wide mb-10 font-mono uppercase">
             Core Stack
           </h3>
 
-          {/* GRID STAC */}
+          {/* GRID STACK */}
           <div className="grid grid-cols-3 gap-4 md:gap-5">
             {/* HTML */}
-            <div className="bg-[#050b18]/60 border border-slate-800/50 p-5 rounded-2xl flex flex-col items-center justify-center gap-3 transition duration-300 hover:border-cyan-500/30 group aspect-square">
+            <div
+              className={`bg-[#050b18]/60 border border-slate-800/50 p-5 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-cyan-500/30 group aspect-square ${
+                isResetting ? "transition-none" : "transition duration-500"
+              } ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: isVisible ? "100ms" : "0ms" }}
+            >
               <Code2 className="w-6 h-6 text-slate-400 group-hover:text-cyan-400 transition-colors" />
               <span className="text-[11px] text-slate-500 font-mono tracking-wider group-hover:text-slate-300 transition-colors">
                 HTML
@@ -96,23 +173,50 @@ const Skills: React.FC = () => {
             </div>
 
             {/* CSS */}
-            <div className="bg-[#050b18]/60 border border-slate-800/50 p-5 rounded-2xl flex flex-col items-center justify-center gap-3 transition duration-300 hover:border-cyan-500/30 group aspect-square">
+            <div
+              className={`bg-[#050b18]/60 border border-slate-800/50 p-5 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-cyan-500/30 group aspect-square ${
+                isResetting ? "transition-none" : "transition duration-500"
+              } ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: isVisible ? "200ms" : "0ms" }}
+            >
               <Braces className="w-6 h-6 text-slate-400 group-hover:text-cyan-400 transition-colors" />
               <span className="text-[11px] text-slate-500 font-mono tracking-wider group-hover:text-slate-300 transition-colors">
                 CSS
               </span>
             </div>
 
-            {/* JS */}
-            <div className="bg-[#050b18]/60 border border-slate-800/50 p-5 rounded-2xl flex flex-col items-center justify-center gap-3 transition duration-300 hover:border-cyan-500/30 group aspect-square">
+            {/* JS / TS */}
+            <div
+              className={`bg-[#050b18]/60 border border-slate-800/50 p-5 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-cyan-500/30 group aspect-square ${
+                isResetting ? "transition-none" : "transition duration-500"
+              } ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: isVisible ? "300ms" : "0ms" }}
+            >
               <FileJson className="w-6 h-6 text-slate-400 group-hover:text-cyan-400 transition-colors" />
               <span className="text-[11px] text-slate-500 font-mono tracking-wider group-hover:text-slate-300 transition-colors">
-                JS
+                Typescript
               </span>
             </div>
 
             {/* REACT */}
-            <div className="bg-[#050b18]/60 border border-slate-800/50 p-5 rounded-2xl flex flex-col items-center justify-center gap-3 transition duration-300 hover:border-cyan-500/40 group aspect-square ring-1 ring-cyan-500/10">
+            <div
+              className={`bg-[#050b18]/60 border border-slate-800/50 p-5 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-cyan-500/40 group aspect-square ring-1 ring-cyan-500/10 ${
+                isResetting ? "transition-none" : "transition duration-500"
+              } ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: isVisible ? "400ms" : "0ms" }}
+            >
               <Atom className="w-6 h-6 text-cyan-400 animate-[spin_20s_linear_infinite]" />
               <span className="text-[11px] text-cyan-400 font-mono tracking-wider font-medium">
                 React
@@ -120,7 +224,16 @@ const Skills: React.FC = () => {
             </div>
 
             {/* Node.js */}
-            <div className="bg-[#050b18]/60 border border-slate-800/50 p-5 rounded-2xl flex flex-col items-center justify-center gap-3 transition duration-300 hover:border-cyan-500/30 group aspect-square">
+            <div
+              className={`bg-[#050b18]/60 border border-slate-800/50 p-5 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-cyan-500/30 group aspect-square ${
+                isResetting ? "transition-none" : "transition duration-500"
+              } ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: isVisible ? "500ms" : "0ms" }}
+            >
               <Blocks className="w-6 h-6 text-slate-400 group-hover:text-cyan-400 transition-colors" />
               <span className="text-[11px] text-slate-500 font-mono tracking-wider group-hover:text-slate-300 transition-colors">
                 Node.js
@@ -128,7 +241,16 @@ const Skills: React.FC = () => {
             </div>
 
             {/* GIT */}
-            <div className="bg-[#050b18]/60 border border-slate-800/50 p-5 rounded-2xl flex flex-col items-center justify-center gap-3 transition duration-300 hover:border-cyan-500/30 group aspect-square">
+            <div
+              className={`bg-[#050b18]/60 border border-slate-800/50 p-5 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-cyan-500/30 group aspect-square ${
+                isResetting ? "transition-none" : "transition duration-500"
+              } ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: isVisible ? "600ms" : "0ms" }}
+            >
               <GitBranch className="w-6 h-6 text-slate-400 group-hover:text-cyan-400 transition-colors" />
               <span className="text-[11px] text-slate-500 font-mono tracking-wider group-hover:text-slate-300 transition-colors">
                 Git

@@ -1,6 +1,10 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&display=swap");
 
 @theme {
+  /* 1. DAFTARKAN FONT KAMU KE VARIABEL UTAMA TAILWIND v4 (--font-sans) */
+  --font-sans: "Stack Sans Notch", sans-serif;
+
   /* Warna Tema */
   --color-darkBg: #0b131f;
   --color-cardBg: #111a24;
@@ -12,13 +16,17 @@
   --shadow-neon-text: 0 0 10px rgba(0, 243, 255, 0.6);
 }
 
+/* 2. TERAPKAN KE GLOBAL BODY AGAR SEMUA TEXT OTOMATIS BERUBAH */
+body {
+  font-family: var(--font-sans);
+}
+
 /* Base style untuk interaksi HTML */
 html {
   scroll-behavior: smooth;
 }
 
 /* GLOBAL ANIMATION KEYFRAMES & UTILITY FOR TIMELINE SCROLL EFFECT */
-
 @keyframes slideFromLeft {
   from {
     opacity: 0;

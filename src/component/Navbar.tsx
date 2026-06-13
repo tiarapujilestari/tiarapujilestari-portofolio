@@ -20,6 +20,22 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children }) => (
 );
 
 const Navbar: React.FC = () => {
+  const handleLogoClick = () => {
+    // 1. Bersihkan hash dari URL tanpa reload lambat
+    window.history.pushState(
+      "",
+      document.title,
+      window.location.pathname + window.location.search,
+    );
+
+    // 2. Scroll ke paling atas secara INSTAN (wajib instant agar animasi terlihat)
+    window.scrollTo({ top: 0, behavior: "auto" });
+
+    // 3. Kirim sinyal custom event untuk memicu ulang animasi Hero
+    const event = new CustomEvent("trigger-hero-animation");
+    window.dispatchEvent(event);
+  };
+
   return (
     <>
       <style>{`
@@ -34,7 +50,8 @@ const Navbar: React.FC = () => {
       <header className="stack-sans-notch-custom fixed top-0 left-0 right-0 z-50 bg-darkBg/70 backdrop-blur-md border-b border-gray-800/40">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center ">
           <div
-            className="text-neonCyan tracking-widest cursor-pointer"
+            onClick={handleLogoClick}
+            className="text-neonCyan tracking-widest cursor-pointer select-none active:scale-95 transition-transform duration-100"
             style={{
               fontSize: "20px",
               fontWeight: "700",
