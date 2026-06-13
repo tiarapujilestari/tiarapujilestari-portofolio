@@ -21,17 +21,17 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children }) => (
 
 const Navbar: React.FC = () => {
   const handleLogoClick = () => {
-    // 1. Bersihkan hash dari URL tanpa reload lambat
+    // Bersihkan hash dari URL tanpa reload lambat
     window.history.pushState(
       "",
       document.title,
       window.location.pathname + window.location.search,
     );
 
-    // 2. Scroll ke paling atas secara INSTAN (wajib instant agar animasi terlihat)
+    // Scroll ke paling atas secara INSTAN
     window.scrollTo({ top: 0, behavior: "auto" });
 
-    // 3. Kirim sinyal custom event untuk memicu ulang animasi Hero
+    // Kirim sinyal custom event untuk memicu ulang animasi Hero
     const event = new CustomEvent("trigger-hero-animation");
     window.dispatchEvent(event);
   };

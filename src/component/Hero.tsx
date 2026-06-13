@@ -3,39 +3,30 @@ import { Layers, Terminal } from "lucide-react";
 import fotoTiara from "../assets/FOTOPROFILE.png";
 
 const Hero: React.FC = () => {
-  // STATE UNTUK TEKS BERGANTI & ANIMASI
+  // STATE ANIMASI
   const roles = ["Full Stack Developer", "UI/UX Designer"];
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [fadeState, setFadeState] = useState("translate-y-0 opacity-100");
 
-  // State untuk memicu transisi masuk/keluar
   const [isLoaded, setIsLoaded] = useState(false);
-
-  // Trik Utama: State Key untuk memaksa re-render animasi CSS Tailwind secara total
   const [animationKey, setAnimationKey] = useState(0);
 
   useEffect(() => {
     const triggerEntranceAnimation = () => {
-      setIsLoaded(false); // Sembunyikan/pecah elemen terlebih dahulu
-
-      // Tambahkan nilai key agar DOM menganggap ini komponen baru dan memutar ulang transisi durasi
+      setIsLoaded(false);
       setAnimationKey((prev) => prev + 1);
-
-      // Berikan jeda super singkat agar state false terdaftar, lalu satukan kembali
       setTimeout(() => {
         setIsLoaded(true);
       }, 50);
     };
 
-    // Jalankan pertama kali saat halaman dibuka
     triggerEntranceAnimation();
 
-    // Mendengarkan sinyal klik PORTOFOLIO dari Navbar
     const handleCustomTrigger = () => {
       triggerEntranceAnimation();
     };
 
-    // Deteksi klik global link #about biasa
+    // Deteksi klik global link #about
     const handleGlobalClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest("a");
@@ -50,7 +41,7 @@ const Hero: React.FC = () => {
     window.addEventListener("trigger-hero-animation", handleCustomTrigger);
     window.addEventListener("click", handleGlobalClick, { capture: true });
 
-    // INTERVAL ROLES TEXT AUTOMATIC SWITCH
+    // TEXT AUTOMATIC SWITCH
     let timeoutOutId: ReturnType<typeof setTimeout>;
     let timeoutInId: ReturnType<typeof setTimeout>;
 
@@ -91,7 +82,7 @@ const Hero: React.FC = () => {
           isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
         }`}
       >
-        {/* PART 1: SISI KIRI (BIODATA & TOMBOL) - PECAH KE KIRI BAWAH */}
+        {/* SISI KIRI (BIODATA & TOMBOL) */}
         <div
           className={`flex-1 space-y-6 max-w-xl transition-all duration-[1200ms] ease-out ${
             isLoaded
@@ -138,7 +129,7 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* PART 2: SISI KANAN (FOTO PROFILE & ORNAMEN) */}
+        {/* SISI KANAN (FOTO PROFILE & ORNAMEN) */}
         <div className="flex-1 flex justify-center relative">
           {/* Ornamen Layers */}
           <div

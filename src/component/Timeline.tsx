@@ -6,7 +6,7 @@ const Timeline: React.FC = () => {
 
   // Fungsi untuk merestart/mengulang animasi
   const triggerAnimation = () => {
-    setIsVisible(false); // Matikan animasi dulu (efek menghilang/fade out)
+    setIsVisible(false); // (efek menghilang/fade out)
     setTimeout(() => {
       setIsVisible(true); // Hidupkan kembali setelah delay kecil agar CSS merefresh animasi
     }, 100);
@@ -14,7 +14,6 @@ const Timeline: React.FC = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      // Agar scroll sesuai dengan kolom
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
@@ -29,7 +28,7 @@ const Timeline: React.FC = () => {
       observer.observe(sectionRef.current);
     }
 
-    // Deteksi klik menu Navbar (berdasarkan perubahan hash # di URL)
+    // Deteksi klik menu Navbar
     const handleHashChange = () => {
       if (window.location.hash === "#timeline") {
         triggerAnimation();
@@ -39,7 +38,7 @@ const Timeline: React.FC = () => {
     // perubahan URL hash
     window.addEventListener("hashchange", handleHashChange);
 
-    // Deteksi juga jika user mengklik menu yang sama berulang kali (hash tidak berubah tapi diklik)
+    // Deteksi juga jika user mengklik menu yang sama berulang kali
     const handleNavbarClick = (e: MouseEvent) => {
       const target = e.target as HTMLAnchorElement;
       if (

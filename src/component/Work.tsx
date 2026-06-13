@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import projectTiara from "../assets/project-aplikasi-rs.png";
 
-// Import mockup gambar milikmu
+// Import mockup
 import mockupGambar2 from "../assets/menu-order.png";
 import mockupGambar3 from "../assets/data-order.png";
 import mockupGambar4 from "../assets/list-order.png";
@@ -20,10 +20,10 @@ const Work: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // State pemicu animasi utama
+  // State animasi utama
   const [animateIn, setAnimateIn] = useState(false);
 
-  // Fungsi pemicu animasi lambat turun
+  // Fungsi animasi lambat turun
   const triggerSlowSlideDown = (delayTime = 0) => {
     setAnimateIn(false);
 
@@ -33,8 +33,6 @@ const Work: React.FC = () => {
   };
 
   useEffect(() => {
-    // FIX: Dibungkus dengan setTimeout 0ms agar dieksekusi secara asinkronus setelah render pertama selesai.
-    // Ini menghilangkan peringatan "cascading renders" sepenuhnya.
     const initialTimeout = setTimeout(() => {
       triggerSlowSlideDown(100);
     }, 0);
@@ -101,7 +99,6 @@ const Work: React.FC = () => {
     triggerSlideTransition(index);
   };
 
-  // Trik memisahkan class custom agar aman dari deteksi error ekstensi VS Code
   const baseCardClass =
     "bg-cardBg/80 border border-gray-800/60 rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row backdrop-blur-sm transform group/card hover:border-neonCyan/40 transition-all";
   const animationStateClass = animateIn
@@ -126,7 +123,7 @@ const Work: React.FC = () => {
         }}
         className={`${baseCardClass} ${animationStateClass}`}
       >
-        {/* SISI KIRI: GAMBAR UTAMA */}
+        {/* SISI KIRI */}
         <div className="flex-1 bg-gradient-to-br from-slate-900 to-slate-950 p-8 md:p-12 flex items-center justify-center border-b md:border-b-0 md:border-r border-gray-800/40 group">
           <div className="relative w-full max-w-sm">
             <div className="absolute inset-0 bg-neonCyan/10 rounded-2xl blur-xl transition-all duration-500 group-hover:bg-neonCyan/20 group-hover:blur-2xl"></div>
@@ -141,7 +138,7 @@ const Work: React.FC = () => {
           </div>
         </div>
 
-        {/* SISI KANAN: DETAIL PROJECT */}
+        {/* SISI KANAN */}
         <div className="flex-1 p-8 md:p-12 flex flex-col justify-between space-y-6">
           <div className="space-y-4">
             <div className="flex flex-wrap gap-2">
@@ -203,7 +200,7 @@ const Work: React.FC = () => {
         </div>
       </div>
 
-      {/* POPUP / MODAL SLIDER IMAGE */}
+      {/* POPUP / SLIDE IMAGE */}
       {isModalOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md transition-opacity duration-300"

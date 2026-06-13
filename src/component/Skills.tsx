@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 
 const Skills = () => {
-  // 1. Ambil kondisi hash langsung sebagai nilai awal (Initial State)
   const [isVisible, setIsVisible] = useState<boolean>(
     typeof window !== "undefined" && window.location.hash === "#skills",
   );
@@ -48,8 +47,6 @@ const Skills = () => {
 
     window.addEventListener("hashchange", handleHashChange);
 
-    // 2. Baris error sinkronus yang sebelumnya ada di sini SEKARANG SUDAH DIHAPUS
-
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
@@ -69,7 +66,7 @@ const Skills = () => {
 
       {/* MAIN GRID */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        {/* GRID KIRI - MELUNCUR DARI KIRI */}
+        {/* GRID KIRI */}
         <div
           className={`lg:col-span-7 flex flex-col justify-between space-y-10 w-full transform ${
             isResetting
@@ -137,7 +134,7 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* GRID KANAN - MELUNCUR DARI KANAN */}
+        {/* GRID KANAN */}
         <div
           className={`lg:col-span-5 w-full bg-[#0b1329]/50 backdrop-blur-md border border-slate-800/70 p-8 md:p-10 rounded-[2.5rem] shadow-2xl flex flex-col justify-center relative transform ${
             isResetting

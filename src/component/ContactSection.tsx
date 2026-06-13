@@ -25,7 +25,7 @@ export default function ContactSection() {
 
         {/* SOSIAL MEDIA NAVIGASI */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto">
-          {/* LINKEDIN BUTTON (MENGGUNAKAN SVG AMAN) */}
+          {/* LINKEDIN BUTTON */}
           <a
             href="https://linkedin.com/in/username-kamu" // Ubah jadi link LinkedIn kamu
             target="_blank"
@@ -53,7 +53,7 @@ export default function ContactSection() {
             </span>
           </a>
 
-          {/* INSTAGRAM BUTTON (MENGGUNAKAN SVG AMAN) */}
+          {/* INSTAGRAM BUTTON */}
           <a
             href="https://instagram.com/username-kamu" // Ubah jadi link Instagram kamu
             target="_blank"
