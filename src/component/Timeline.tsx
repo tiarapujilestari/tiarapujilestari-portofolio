@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import fotoManager from "../assets/sarah-maulida.png";
 
 const Timeline: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -169,7 +170,7 @@ const Timeline: React.FC = () => {
               <div className="flex items-center gap-3 mt-4 pt-4 border-t border-gray-800/40 relative z-10 html-light:border-gray-200">
                 <div className="w-9 h-9 rounded-full bg-slate-800 overflow-hidden border border-gray-700 html-light:border-gray-300">
                   <img
-                    src="../src/assets/sarah-maulida.png"
+                    src={fotoManager}
                     alt="Sarah Maulida"
                     className="w-full h-full object-cover"
                   />

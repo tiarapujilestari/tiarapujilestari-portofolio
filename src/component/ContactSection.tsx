@@ -1,4 +1,20 @@
+import React, { useState } from "react";
+
 export default function ContactSection() {
+  // Menentukan tipe data untuk state form agar type-safe
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  // Memberikan tipe data FormEvent pada submit handler
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Data dikirim:", formData);
+    // Tambahkan logika pengiriman email di sini (misal: EmailJS atau API)
+  };
+
   return (
     <div
       id="contact"
@@ -24,7 +40,7 @@ export default function ContactSection() {
         </div>
 
         {/* SOSIAL MEDIA NAVIGASI */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto mb-12">
           {/* LINKEDIN BUTTON */}
           <a
             href="https://linkedin.com/in/username-kamu" // Ubah jadi link LinkedIn kamu
@@ -81,6 +97,91 @@ export default function ContactSection() {
             </span>
           </a>
         </div>
+
+        {/* --- FITUR TAMBAHAN: FORMULIR KONTAK DIRECT --- */}
+        <div className="relative flex py-5 items-center my-6">
+          <div className="flex-grow border-t border-slate-800/60"></div>
+          <span className="flex-shrink mx-4 text-slate-500 font-mono text-xs uppercase tracking-widest">
+            Or drop a message
+          </span>
+          <div className="flex-grow border-t border-slate-800/60"></div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-5 max-w-xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">
+                Name
+              </label>
+              <input
+                type="text"
+                placeholder="Your name"
+                value={formData.name}
+                // Memberikan tipe data ChangeEvent pada element input HTML
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+                className="w-full bg-[#050b18] border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition duration-200"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                placeholder="name@example.com"
+                value={formData.email}
+                // Memberikan tipe data ChangeEvent pada element input HTML
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                className="w-full bg-[#050b18] border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition duration-200"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">
+              Message
+            </label>
+            <textarea
+              rows={4}
+              placeholder="Tell me about your project..."
+              value={formData.message}
+              // Memberikan tipe data ChangeEvent pada element textarea HTML
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
+              className="w-full bg-[#050b18] border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition duration-200 resize-none"
+              required
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-medium rounded-xl py-4 transition duration-300 shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20 text-sm tracking-wider uppercase font-mono"
+          >
+            Send Message
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="mt-0.5"
+            >
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </form>
       </div>
     </div>
   );
