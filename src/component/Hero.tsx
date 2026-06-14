@@ -20,13 +20,13 @@ const Hero: React.FC = () => {
       }, 50);
     };
 
-    triggerEntranceAnimation();
+    triggerEntranceAnimation(); //event listeners
 
     const handleCustomTrigger = () => {
       triggerEntranceAnimation();
     };
 
-    // Deteksi klik global link #about
+    // deteksi klik global link #about
     const handleGlobalClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest("a");
@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
           setFadeState("translate-y-0 opacity-100");
         }, 50);
       }, 400);
-    }, 3000);
+    }, 3000); //setiap 3 detiik / dibaca 3000ms
 
     return () => {
       window.removeEventListener("trigger-hero-animation", handleCustomTrigger);

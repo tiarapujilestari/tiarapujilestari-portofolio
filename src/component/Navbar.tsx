@@ -5,7 +5,9 @@ interface NavLinkProps {
   children: React.ReactNode;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ href, children }) => (
+const NavLink: React.FC<NavLinkProps> = (
+  { href, children }, // tipe typescript yang menegaskan fungsi ini wajib mengembalikan elemen ui
+) => (
   <a
     href={href}
     className="hover:text-white transition-colors duration-200"
@@ -20,18 +22,20 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children }) => (
 );
 
 const Navbar: React.FC = () => {
+  // arrow function
   const handleLogoClick = () => {
-    // Bersihkan hash dari URL tanpa reload lambat
+    //fungsi internal (handler)
     window.history.pushState(
+      //manipulasi url secara instan untuk menghapus tanda #
       "",
       document.title,
       window.location.pathname + window.location.search,
     );
 
-    // Scroll ke paling atas secara INSTAN
+    // scroll ke paling atas secara INSTAN
     window.scrollTo({ top: 0, behavior: "auto" });
 
-    // Kirim sinyal custom event untuk memicu ulang animasi Hero
+    // kirim sinyal custom event untuk memicu ulang animasi Hero
     const event = new CustomEvent("trigger-hero-animation");
     window.dispatchEvent(event);
   };

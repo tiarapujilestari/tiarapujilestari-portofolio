@@ -6,14 +6,21 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import projectTiara from "../assets/project-aplikasi-rs.png";
+import projectTiara from "../assets/login.png";
 
 // Import mockup
-import mockupGambar2 from "../assets/menu-order.png";
-import mockupGambar3 from "../assets/data-order.png";
-import mockupGambar4 from "../assets/list-order.png";
-import mockupGambar5 from "../assets/menu-order.png";
-import mockupGambar6 from "../assets/success.png";
+import mockupGambar2 from "../assets/project-aplikasi-rs.png";
+import mockupGambar3 from "../assets/detail-cabang.png";
+import mockupGambar4 from "../assets/detail-rekap.png";
+import mockupGambar5 from "../assets/detail-pantangan.png";
+import mockupGambar6 from "../assets/detail-pantangan-rg.png";
+import mockupGambar7 from "../assets/input-menu-sarapan.png";
+import mockupGambar8 from "../assets/input-menu-makan-siang.png";
+import mockupGambar9 from "../assets/input-menu-makan-malam.png";
+import mockupGambar10 from "../assets/input-menu-snack-kariyawan.png";
+import mockupGambar11 from "../assets/master-dashboard.png";
+import mockupGambar12 from "../assets/popup-berhasil.png";
+import mockupGambar13 from "../assets/popup-gagal.png";
 
 const Work: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,12 +65,20 @@ const Work: React.FC = () => {
   }, []);
 
   const projectImages = [
+    //
     projectTiara,
     mockupGambar2,
     mockupGambar3,
     mockupGambar4,
     mockupGambar5,
     mockupGambar6,
+    mockupGambar7,
+    mockupGambar8,
+    mockupGambar9,
+    mockupGambar10,
+    mockupGambar11,
+    mockupGambar12,
+    mockupGambar13,
   ];
 
   const triggerSlideTransition = (nextIndex: number) => {

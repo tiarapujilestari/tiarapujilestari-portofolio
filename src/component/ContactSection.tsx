@@ -12,7 +12,6 @@ export default function ContactSection() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Data dikirim:", formData);
-    // Tambahkan logika pengiriman email di sini (misal: EmailJS atau API)
   };
 
   return (
