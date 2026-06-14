@@ -101,13 +101,14 @@ const Timeline: React.FC = () => {
                 </h3>
 
                 <h4 className="text-xs text-gray-400 font-medium tracking-wide html-light:text-gray-500">
-                  Quantum Tech Solutions
+                  Digital Indonesia Hebat
                 </h4>
 
                 <p className="text-gray-400 text-xs md:text-sm leading-relaxed font-light pt-1 html-light:text-gray-600">
-                  Leading the UI team in developing high-fidelity dashboard
-                  components and architectural design system integration for
-                  Fortune 500 fintech clients.
+                  Designed and developed responsive web interfaces using HTML,
+                  CSS, React.js, and JavaScript. Created user-centered designs,
+                  interactive prototypes, and modern dashboard layouts while
+                  focusing on usability and accessibility.
                 </p>
               </div>
             </div>
@@ -128,13 +129,14 @@ const Timeline: React.FC = () => {
                 </h3>
 
                 <h4 className="text-xs text-gray-400 font-medium tracking-wide html-light:text-gray-500">
-                  Nexus Creative Labs
+                  PT CAHAYA PERDANA NUSANTARA
                 </h4>
 
                 <p className="text-gray-400 text-xs md:text-sm leading-relaxed font-light pt-1 html-light:text-gray-600">
-                  Built dynamic e-commerce solutions and complex API
-                  integrations. Spearheaded the move to micro-frontend
-                  architecture.
+                  Developed a web-based patient meal ordering system to
+                  streamline food request management in hospitals. Designed the
+                  user interface, database structure, and application workflow
+                  using modern web technologies.
                 </p>
               </div>
             </div>
