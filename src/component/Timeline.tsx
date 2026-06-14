@@ -97,7 +97,7 @@ const Timeline: React.FC = () => {
                 </span>
 
                 <h3 className="text-xl font-bold text-gray-100 html-light:text-gray-900">
-                  Senior Frontend Engineer
+                  Junior Frontend Engineer
                 </h3>
 
                 <h4 className="text-xs text-gray-400 font-medium tracking-wide html-light:text-gray-500">
