@@ -93,7 +93,7 @@ const Timeline: React.FC = () => {
 
               <div className="bg-cardBg/70 border border-gray-800/60 p-6 rounded-2xl space-y-3 hover:border-cyan-500/20 transition-all duration-300 html-light:bg-gray-100 html-light:border-gray-200">
                 <span className="inline-block bg-cyan-950/40 border border-neonCyan/30 text-neonCyan text-[10px] tracking-wider font-bold px-2.5 py-0.5 rounded html-light:bg-blue-50 html-light:border-blue-200 html-light:text-blue-600">
-                  2022 - PRESENT
+                  2026 - PRESENT
                 </span>
 
                 <h3 className="text-xl font-bold text-gray-100 html-light:text-gray-900">
@@ -101,7 +101,7 @@ const Timeline: React.FC = () => {
                 </h3>
 
                 <h4 className="text-xs text-gray-400 font-medium tracking-wide html-light:text-gray-500">
-                  Digital Indonesia Hebat
+                  PT CAHAYA PERDANA NUSANTARA
                 </h4>
 
                 <p className="text-gray-400 text-xs md:text-sm leading-relaxed font-light pt-1 html-light:text-gray-600">
@@ -121,7 +121,7 @@ const Timeline: React.FC = () => {
 
               <div className="bg-cardBg/70 border border-gray-800/60 p-6 rounded-2xl space-y-3 hover:border-cyan-500/20 transition-all duration-300 html-light:bg-gray-100 html-light:border-gray-200">
                 <span className="inline-block bg-gray-800 text-gray-400 text-[10px] tracking-wider font-bold px-2.5 py-0.5 rounded html-light:bg-gray-200 html-light:text-gray-600">
-                  2020 - 2022
+                  2026 - PRESENT
                 </span>
 
                 <h3 className="text-xl font-bold text-gray-100 html-light:text-gray-900">

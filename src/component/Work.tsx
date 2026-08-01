@@ -5,10 +5,11 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  ExternalLink,
 } from "lucide-react";
-import projectTiara from "../assets/login.png";
 
-// Import mockup
+// ===== Project 1: Pemesanan Makan Pasien RS Awal Bros =====
+import projectTiara from "../assets/login.png";
 import mockupGambar2 from "../assets/project-aplikasi-rs.png";
 import mockupGambar3 from "../assets/detail-cabang.png";
 import mockupGambar4 from "../assets/detail-rekap.png";
@@ -22,8 +23,89 @@ import mockupGambar11 from "../assets/master-dashboard.png";
 import mockupGambar12 from "../assets/popup-berhasil.png";
 import mockupGambar13 from "../assets/popup-gagal.png";
 
+// ===== Project 2: SIM CPN — Sistem Informasi Manajemen Inventory & Keuangan =====
+// Sesuaikan nama file dengan yang ada di folder assets kamu
+import simCpnLogin from "../assets/sim-cpn-login.png";
+import simCpnDashboard from "../assets/sim-cpn-dashboard.png";
+import simCpnStokGudang from "../assets/sim-cpn-stok-gudang.png";
+import simCpnDailyRequest from "../assets/sim-cpn-daily-request.png";
+
+// ===== Project 3: Bokvra Coffee & Resto (Company Profile Website) =====
+// Sesuaikan nama file dengan yang ada di folder assets kamu
+import bokvraBeranda from "../assets/bokvra-beranda.png";
+import bokvraBlog from "../assets/bokvra-blog.png";
+import bokvraTentangKami from "../assets/bokvra-tentang-kami.png";
+import bokvraMenuLayanan from "../assets/bokvra-menu-layanan.png";
+
+type Project = {
+  id: string;
+  title: string;
+  tech: string[];
+  situation: string;
+  tujuan: string;
+  thumbnail: string;
+  images: string[];
+  liveUrl?: string;
+};
+
+const projects: Project[] = [
+  {
+    id: "rs-awal-bros",
+    title: "Pemesanan Makan Pasien RS Awal Bros",
+    tech: ["React", "Node.js", "Java Script", "Visual Studio Code"],
+    situation:
+      "Pemesanan Makanan pasien yang di lakukan setiap hari dan berbeda siklus yang harus melewati seleksi menu oleh ahli gizi dan juga tergantung pantangan makan pasien.",
+    tujuan:
+      "Tercapainya pemesanan makanan sesuai dengan yang di butuhkan oleh rumah sakit dan juga sesuai dengan pantangan ataupun gizi yang di hitung oleh ahli gizi.",
+    thumbnail: projectTiara,
+    images: [
+      projectTiara,
+      mockupGambar2,
+      mockupGambar3,
+      mockupGambar4,
+      mockupGambar5,
+      mockupGambar6,
+      mockupGambar7,
+      mockupGambar8,
+      mockupGambar9,
+      mockupGambar10,
+      mockupGambar11,
+      mockupGambar12,
+      mockupGambar13,
+    ],
+  },
+  {
+    id: "sim-cpn-inventory",
+    title: "SIM CPN — Sistem Informasi Manajemen Inventory & Keuangan",
+    tech: ["React", "Node.js", "Java Script", "MySQL"],
+    situation:
+      "PT Cahaya Perdana Nusantara membutuhkan sistem terpusat untuk mengelola data master, transaksi inventory, keuangan (mapping RO, payment voucher, bank expense), stok gudang, hingga laporan pembelian dan supplier yang sebelumnya masih tersebar dan manual.",
+    tujuan:
+      "Menghadirkan Sistem Informasi Manajemen (SIM) berbasis web dengan hak akses login per role, modul stok gudang dengan filter departemen & gudang, transaksi Daily Request (DR) antar departemen lengkap dengan status approval dan cetak, serta laporan pembelian dan supplier yang terintegrasi dalam satu dashboard.",
+    thumbnail: simCpnDashboard,
+    images: [
+      simCpnLogin,
+      simCpnDashboard,
+      simCpnStokGudang,
+      simCpnDailyRequest,
+    ],
+  },
+  {
+    id: "bokvra-coffee-resto",
+    title: "Bokvra Coffee & Resto — Company Profile & Blog",
+    tech: ["React", "Tailwind CSS", "Vercel"],
+    situation:
+      "Bokvra Coffee & Resto membutuhkan website resmi untuk memperkenalkan brand, menu, tim, serta blog sebagai media cerita dan edukasi seputar kopi kepada pelanggan.",
+    tujuan:
+      "Menghadirkan website yang hangat dan sesuai identitas brand (Ngopi Senyaman Rumah), lengkap dengan halaman Beranda, Tentang Kami, Menu & Layanan, Tim, dan Blog yang mudah dikelola.",
+    thumbnail: bokvraBeranda,
+    images: [bokvraBeranda, bokvraTentangKami, bokvraMenuLayanan, bokvraBlog],
+    liveUrl: "https://bokvra-space.vercel.app/",
+  },
+];
+
 const Work: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -64,22 +146,17 @@ const Work: React.FC = () => {
     };
   }, []);
 
-  const projectImages = [
-    //
-    projectTiara,
-    mockupGambar2,
-    mockupGambar3,
-    mockupGambar4,
-    mockupGambar5,
-    mockupGambar6,
-    mockupGambar7,
-    mockupGambar8,
-    mockupGambar9,
-    mockupGambar10,
-    mockupGambar11,
-    mockupGambar12,
-    mockupGambar13,
-  ];
+  const activeProject = projects.find((p) => p.id === activeProjectId) || null;
+
+  const openModal = (projectId: string) => {
+    setActiveProjectId(projectId);
+    setCurrentImageIndex(0);
+  };
+
+  const closeModal = () => {
+    setActiveProjectId(null);
+    setCurrentImageIndex(0);
+  };
 
   const triggerSlideTransition = (nextIndex: number) => {
     setIsAnimating(true);
@@ -91,9 +168,9 @@ const Work: React.FC = () => {
 
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isAnimating) return;
+    if (isAnimating || !activeProject) return;
     const nextIdx =
-      currentImageIndex === projectImages.length - 1
+      currentImageIndex === activeProject.images.length - 1
         ? 0
         : currentImageIndex + 1;
     triggerSlideTransition(nextIdx);
@@ -101,10 +178,10 @@ const Work: React.FC = () => {
 
   const prevImage = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isAnimating) return;
+    if (isAnimating || !activeProject) return;
     const prevIdx =
       currentImageIndex === 0
-        ? projectImages.length - 1
+        ? activeProject.images.length - 1
         : currentImageIndex - 1;
     triggerSlideTransition(prevIdx);
   };
@@ -123,110 +200,116 @@ const Work: React.FC = () => {
   return (
     <section
       id="work"
-      className="max-w-5xl w-full mx-auto px-6 mb-24 scroll-mt-28 relative"
+      className="max-w-5xl w-full mx-auto px-6 mb-24 scroll-mt-28 relative flex flex-col gap-10"
     >
-      {/* CARD UTAMA */}
-      <div
-        style={{
-          boxShadow: animateIn
-            ? "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
-            : "none",
-          transitionDuration: animateIn ? "3000ms" : "0ms",
-          transitionTimingFunction: animateIn
-            ? "cubic-bezier(0.34, 1.5, 0.64, 1)"
-            : "unset",
-        }}
-        className={`${baseCardClass} ${animationStateClass}`}
-      >
-        {/* SISI KIRI */}
-        <div className="flex-1 bg-gradient-to-br from-slate-900 to-slate-950 p-8 md:p-12 flex items-center justify-center border-b md:border-b-0 md:border-r border-gray-800/40 group">
-          <div className="relative w-full max-w-sm">
-            <div className="absolute inset-0 bg-neonCyan/10 rounded-2xl blur-xl transition-all duration-500 group-hover:bg-neonCyan/20 group-hover:blur-2xl"></div>
+      {projects.map((project, cardIndex) => (
+        <div
+          key={project.id}
+          style={{
+            boxShadow: animateIn
+              ? "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
+              : "none",
+            transitionDuration: animateIn ? "3000ms" : "0ms",
+            transitionDelay: animateIn ? `${cardIndex * 150}ms` : "0ms",
+            transitionTimingFunction: animateIn
+              ? "cubic-bezier(0.34, 1.5, 0.64, 1)"
+              : "unset",
+          }}
+          className={`${baseCardClass} ${animationStateClass}`}
+        >
+          {/* SISI KIRI */}
+          <div className="flex-1 bg-gradient-to-br from-slate-900 to-slate-950 p-8 md:p-12 flex items-center justify-center border-b md:border-b-0 md:border-r border-gray-800/40 group">
+            <div className="relative w-full max-w-sm">
+              <div className="absolute inset-0 bg-neonCyan/10 rounded-2xl blur-xl transition-all duration-500 group-hover:bg-neonCyan/20 group-hover:blur-2xl"></div>
 
-            <div className="bg-slate-950 border-4 border-gray-800 rounded-2xl p-2 aspect-[4/3] flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:border-neonCyan/30">
-              <img
-                src={projectTiara}
-                alt="project"
-                className="w-full h-full object-cover rounded-lg opacity-85 transition-all duration-500 ease-out group-hover:scale-105 group-hover:opacity-100"
-              />
+              <div className="bg-slate-950 border-4 border-gray-800 rounded-2xl p-2 aspect-[4/3] flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:border-neonCyan/30">
+                <img
+                  src={project.thumbnail}
+                  alt={project.title}
+                  className="w-full h-full object-cover rounded-lg opacity-85 transition-all duration-500 ease-out group-hover:scale-105 group-hover:opacity-100"
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* SISI KANAN */}
-        <div className="flex-1 p-8 md:p-12 flex flex-col justify-between space-y-6">
-          <div className="space-y-4">
-            <div className="flex flex-wrap gap-2">
-              {["React", "Node.js", "Java Script", "Visual Studio Code"].map(
-                (tech) => (
+          {/* SISI KANAN */}
+          <div className="flex-1 p-8 md:p-12 flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((tech) => (
                   <span
                     key={tech}
                     className="bg-innerCard border border-gray-800 text-gray-400 text-[10px] px-3 py-1 rounded-full transition-all duration-300 ease-out hover:border-neonCyan/50 hover:text-white transform hover:-translate-y-0.5"
                   >
                     {tech}
                   </span>
-                ),
+                ))}
+              </div>
+
+              <h3 className="text-3xl font-bold text-neonCyan drop-shadow-[0_0_10px_rgba(0,243,255,0.3)]">
+                {project.title}
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-innerCard/50 border border-gray-800/40 p-4 rounded-xl space-y-1 transition-all duration-300 ease-out hover:border-neonCyan/30 transform hover:-translate-y-1">
+                  <div className="flex items-center gap-2 text-neonCyan text-xs font-bold uppercase">
+                    <Flag className="w-3.5 h-3.5" />
+                    Situation
+                  </div>
+                  <p className="text-gray-400 text-xs leading-relaxed">
+                    {project.situation}
+                  </p>
+                </div>
+
+                <div className="bg-innerCard/50 border border-gray-800/40 p-4 rounded-xl space-y-1 transition-all duration-300 ease-out hover:border-neonCyan/30 transform hover:-translate-y-1">
+                  <div className="flex items-center gap-2 text-neonCyan text-xs font-bold uppercase">
+                    <ClipboardList className="w-3.5 h-3.5" />
+                    Tujuan
+                  </div>
+                  <p className="text-gray-400 text-xs leading-relaxed">
+                    {project.tujuan}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-gray-800/40 flex flex-wrap items-center justify-end gap-3">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 border border-neonCyan/40 text-neonCyan text-xs font-bold px-6 py-3 rounded-xl transition-all duration-300 ease-out cursor-pointer transform hover:scale-105 active:scale-95 hover:bg-neonCyan/10"
+                >
+                  Live Demo
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               )}
+
+              <button
+                onClick={() => openModal(project.id)}
+                style={{ boxShadow: "0 0 15px rgba(0, 243, 255, 0.3)" }}
+                className="bg-neonCyan text-darkBg text-xs font-bold px-6 py-3 rounded-xl transition-all duration-300 ease-out cursor-pointer transform hover:scale-105 active:scale-95 hover:bg-neonCyan/90"
+              >
+                View Case Study →
+              </button>
             </div>
-
-            <h3 className="text-3xl font-bold text-neonCyan drop-shadow-[0_0_10px_rgba(0,243,255,0.3)]">
-              Pemesanan Makan Pasien RS Awal Bros
-            </h3>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-innerCard/50 border border-gray-800/40 p-4 rounded-xl space-y-1 transition-all duration-300 ease-out hover:border-neonCyan/30 transform hover:-translate-y-1">
-                <div className="flex items-center gap-2 text-neonCyan text-xs font-bold uppercase">
-                  <Flag className="w-3.5 h-3.5" />
-                  Situation
-                </div>
-                <p className="text-gray-400 text-xs leading-relaxed">
-                  Pemesanan Makanan pasien yang di lakukan setiap hari dan
-                  berbeda siklus yang harus melewati seleksi menu oleh ahli gizi
-                  dan juga tergantung pantangan makan pasien.
-                </p>
-              </div>
-
-              <div className="bg-innerCard/50 border border-gray-800/40 p-4 rounded-xl space-y-1 transition-all duration-300 ease-out hover:border-neonCyan/30 transform hover:-translate-y-1">
-                <div className="flex items-center gap-2 text-neonCyan text-xs font-bold uppercase">
-                  <ClipboardList className="w-3.5 h-3.5" />
-                  Tujuan
-                </div>
-                <p className="text-gray-400 text-xs leading-relaxed">
-                  Tercapainya pemesanan makanan sesuai dengan yang di butuhkan
-                  oleh rumah sakit dan juga sesuai dengan pantangan ataupun gizi
-                  yang di hitung oleh ahli gizi.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-4 border-t border-gray-800/40 flex justify-end">
-            <button
-              onClick={() => {
-                setIsModalOpen(true);
-                setCurrentImageIndex(0);
-              }}
-              style={{ boxShadow: "0 0 15px rgba(0, 243, 255, 0.3)" }}
-              className="bg-neonCyan text-darkBg text-xs font-bold px-6 py-3 rounded-xl transition-all duration-300 ease-out cursor-pointer transform hover:scale-105 active:scale-95 hover:bg-neonCyan/90"
-            >
-              View Case Study →
-            </button>
           </div>
         </div>
-      </div>
+      ))}
 
-      {/* POPUP / SLIDE IMAGE */}
-      {isModalOpen && (
+      {/* POPUP / SLIDE IMAGE — shared modal untuk semua project */}
+      {activeProject && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md transition-opacity duration-300"
-          onClick={() => setIsModalOpen(false)}
+          onClick={closeModal}
         >
           <div
             className="relative max-w-4xl w-full bg-slate-950 border border-gray-800 rounded-3xl p-4 md:p-6 shadow-2xl flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              onClick={() => setIsModalOpen(false)}
+              onClick={closeModal}
               className="absolute top-4 right-4 text-gray-400 hover:text-white bg-slate-900/60 p-2 rounded-full border border-gray-800/60 transition-all duration-300 cursor-pointer hover:rotate-90"
             >
               <X className="w-5 h-5" />
@@ -234,16 +317,30 @@ const Work: React.FC = () => {
 
             <div className="w-full text-left mb-4 px-2">
               <h4 className="text-sm font-bold text-neonCyan tracking-wide uppercase font-mono">
-                / Project Preview
+                / {activeProject.title}
               </h4>
-              <p className="text-gray-400 text-xs mt-1">
-                Gambar {currentImageIndex + 1} dari {projectImages.length}
-              </p>
+              <div className="flex items-center justify-between mt-1">
+                <p className="text-gray-400 text-xs">
+                  Gambar {currentImageIndex + 1} dari{" "}
+                  {activeProject.images.length}
+                </p>
+                {activeProject.liveUrl && (
+                  <a
+                    href={activeProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-neonCyan text-xs hover:underline"
+                  >
+                    Kunjungi Website
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
+              </div>
             </div>
 
             <div className="relative w-full aspect-[16/10] bg-slate-900/40 rounded-2xl border border-gray-800/40 flex items-center justify-center overflow-hidden group">
               <img
-                src={projectImages[currentImageIndex]}
+                src={activeProject.images[currentImageIndex]}
                 alt={`Screenshot slide ${currentImageIndex + 1}`}
                 className={`max-w-full max-h-full object-contain rounded-lg transition-all duration-300 ease-in-out ${
                   isAnimating
@@ -268,7 +365,7 @@ const Work: React.FC = () => {
             </div>
 
             <div className="flex gap-2 mt-4">
-              {projectImages.map((_, index) => (
+              {activeProject.images.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => handleDotClick(index)}

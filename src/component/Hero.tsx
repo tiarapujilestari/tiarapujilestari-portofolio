@@ -4,7 +4,7 @@ import fotoTiara from "../assets/FOTOPROFILE.png";
 
 const Hero: React.FC = () => {
   // STATE ANIMASI
-  const roles = ["Full Stack Developer", "UI/UX Designer"];
+  const roles = ["Full Stack Developer", "UI/UX Designer", "Software Engineer"];
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [fadeState, setFadeState] = useState("translate-y-0 opacity-100");
 

@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
+
+const EMAILJS_SERVICE_ID = "service_junior009";
+const EMAILJS_TEMPLATE_ID = "template_junior009";
+const EMAILJS_PUBLIC_KEY = "PWARndjNzJlYP6qs5";
+
+const CONTACT_EMAIL = "tiarapujilestari009@gmail.com";
+
+type SubmitStatus = "idle" | "sending" | "success" | "error";
 
 export default function ContactSection() {
   // Menentukan tipe data untuk state form agar type-safe
@@ -8,10 +17,32 @@ export default function ContactSection() {
     message: "",
   });
 
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+
   // Memberikan tipe data FormEvent pada submit handler
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Data dikirim:", formData);
+    setStatus("sending");
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: CONTACT_EMAIL,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Gagal mengirim pesan:", error);
+      setStatus("error");
+    }
   };
 
   return (
@@ -42,7 +73,7 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto mb-12">
           {/* LINKEDIN BUTTON */}
           <a
-            href="https://linkedin.com/in/username-kamu" // Ubah jadi link LinkedIn kamu
+            href="https://www.linkedin.com/in/tiarapujilestari9/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 bg-[#050b18] border border-slate-800 rounded-xl py-4 px-6 text-slate-300 hover:text-cyan-400 hover:border-cyan-500/50 transition duration-300 shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(34,211,238,0.15)] group"
@@ -68,11 +99,9 @@ export default function ContactSection() {
             </span>
           </a>
 
-          {/* INSTAGRAM BUTTON */}
+          {/* EMAIL BUTTON (menggantikan Instagram) */}
           <a
-            href="https://instagram.com/username-kamu" // Ubah jadi link Instagram kamu
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`mailto:${CONTACT_EMAIL}`}
             className="flex items-center justify-center gap-3 bg-[#050b18] border border-slate-800 rounded-xl py-4 px-6 text-slate-300 hover:text-cyan-400 hover:border-cyan-500/50 transition duration-300 shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(34,211,238,0.15)] group"
           >
             <svg
@@ -87,12 +116,11 @@ export default function ContactSection() {
               strokeLinejoin="round"
               className="transition-transform group-hover:scale-110"
             >
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
             <span className="font-mono text-sm tracking-widest uppercase font-medium">
-              Instagram
+              Email
             </span>
           </a>
         </div>
@@ -161,9 +189,10 @@ export default function ContactSection() {
 
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-medium rounded-xl py-4 transition duration-300 shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20 text-sm tracking-wider uppercase font-mono"
+            disabled={status === "sending"}
+            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium rounded-xl py-4 transition duration-300 shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20 text-sm tracking-wider uppercase font-mono"
           >
-            Send Message
+            {status === "sending" ? "Sending..." : "Send Message"}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -180,6 +209,17 @@ export default function ContactSection() {
               <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
             </svg>
           </button>
+
+          {status === "success" && (
+            <p className="text-center text-sm text-emerald-400 font-mono">
+              Pesan berhasil dikirim. Terima kasih!
+            </p>
+          )}
+          {status === "error" && (
+            <p className="text-center text-sm text-red-400 font-mono">
+              Gagal mengirim pesan. Coba lagi atau hubungi lewat email/LinkedIn.
+            </p>
+          )}
         </form>
       </div>
     </div>
