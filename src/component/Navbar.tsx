@@ -1,4 +1,5 @@
 import React from "react";
+import resumeFile from "../assets/Tiara-Pujilestari-Resume.pdf"
 
 interface NavLinkProps {
   href: string;
@@ -10,7 +11,7 @@ const NavLink: React.FC<NavLinkProps> = (
 ) => (
   <a
     href={href}
-    className="hover:text-white transition-colors duration-200"
+    className="transition-colors duration-200 hover:text-white"
     style={{
       fontSize: "15px",
       fontWeight: "500",
@@ -51,11 +52,11 @@ const Navbar: React.FC = () => {
         }
       `}</style>
 
-      <header className="stack-sans-notch-custom fixed top-0 left-0 right-0 z-50 bg-darkBg/70 backdrop-blur-md border-b border-gray-800/40">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center ">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b stack-sans-notch-custom bg-darkBg/70 backdrop-blur-md border-gray-800/40">
+        <div className="flex items-center justify-between max-w-6xl px-6 py-4 mx-auto ">
           <div
             onClick={handleLogoClick}
-            className="text-neonCyan tracking-widest cursor-pointer select-none active:scale-95 transition-transform duration-100"
+            className="tracking-widest transition-transform duration-100 cursor-pointer select-none text-neonCyan active:scale-95"
             style={{
               fontSize: "20px",
               fontWeight: "700",
@@ -65,7 +66,7 @@ const Navbar: React.FC = () => {
             PORTOFOLIO
           </div>
 
-          <nav className="hidden md:flex space-x-8 tracking-wider text-gray-400">
+          <nav className="hidden space-x-8 tracking-wider text-gray-400 md:flex">
             <NavLink href="#about">About</NavLink>
             <NavLink href="#skills">Skills</NavLink>
             <NavLink href="#work">Work</NavLink>
@@ -73,8 +74,11 @@ const Navbar: React.FC = () => {
             <NavLink href="#contact">Contact</NavLink>
           </nav>
 
-          <button
-            className="bg-neonCyan text-darkBg rounded-full shadow-neon-glow hover:scale-105 transition-all duration-300 cursor-pointer"
+          <a
+            href={resumeFile}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center transition-all duration-300 rounded-full cursor-pointer bg-neonCyan text-darkBg shadow-neon-glow hover:scale-105"
             style={{
               fontSize: "15px",
               fontWeight: "700",
@@ -82,7 +86,7 @@ const Navbar: React.FC = () => {
             }}
           >
             Hire Me
-          </button>
+          </a>
         </div>
       </header>
     </>

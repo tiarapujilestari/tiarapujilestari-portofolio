@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Layers, Terminal } from "lucide-react";
 import fotoTiara from "../assets/FOTOPROFILE.png";
 
+// ===== File CV & Resume =====
+// Sesuaikan nama file dengan yang ada di folder assets kamu
+import cvAtsFile from "../assets/Tiara-Pujilestari-CV-ATS.pdf";
+
+
 const Hero: React.FC = () => {
   // STATE ANIMASI
   const roles = ["Full Stack Developer", "UI/UX Designer", "Software Engineer"];
@@ -67,10 +72,21 @@ const Hero: React.FC = () => {
     };
   }, [roles.length]);
 
+  // Scroll halus ke section #contact
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      // fallback kalau section belum ter-render / id beda
+      window.location.hash = "#contact";
+    }
+  };
+
   return (
     <section
       id="about"
-      className="max-w-5xl w-full mx-auto px-6 mb-24 scroll-mt-28 relative overflow-hidden"
+      className="relative w-full max-w-5xl px-6 mx-auto mb-24 overflow-hidden scroll-mt-28"
     >
       {/* Efek Blur Latar Belakang */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neonCyan/5 rounded-full blur-[120px] pointer-events-none html-light:hidden"></div>
@@ -95,7 +111,7 @@ const Hero: React.FC = () => {
           </div>
 
           <div className="space-y-2">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-wide text-gray-100 html-light:text-gray-900">
+            <h1 className="text-5xl font-bold tracking-wide text-gray-100 md:text-6xl html-light:text-gray-900">
               Tiara
             </h1>
 
@@ -103,7 +119,7 @@ const Hero: React.FC = () => {
               Pujilestari
             </h2>
 
-            <div className="h-10 md:h-12 overflow-hidden pt-2 relative">
+            <div className="relative h-10 pt-2 overflow-hidden md:h-12">
               <h3
                 className={`text-2xl md:text-3xl font-semibold text-gray-400 html-light:text-gray-500 transition-all duration-500 ease-in-out transform ${fadeState}`}
               >
@@ -112,25 +128,35 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          <p className="text-gray-400 text-sm md:text-base leading-relaxed font-light max-w-md html-light:text-gray-600">
+          <p className="max-w-md text-sm font-light leading-relaxed text-gray-400 md:text-base html-light:text-gray-600">
             Building scalable and high-performance web solutions with a focus on
             architectural precision and intuitive user experiences. Specialized
             in modern React ecosystems and cloud-native backends.
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
-            <button className="bg-neonCyan text-darkBg text-xs md:text-sm font-bold px-6 py-3 rounded-xl shadow-neon-glow hover:opacity-90 transition-all duration-300 cursor-pointer html-light:bg-blue-600 html-light:text-white html-light:shadow-none">
+            {/* VIEW PORTFOLIO -> buka CV ATS di tab baru */}
+            <a
+              href={cvAtsFile}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-6 py-3 text-xs font-bold transition-all duration-300 cursor-pointer bg-neonCyan text-darkBg md:text-sm rounded-xl shadow-neon-glow hover:opacity-90 html-light:bg-blue-600 html-light:text-white html-light:shadow-none"
+            >
               View Portfolio
-            </button>
+            </a>
 
-            <button className="border border-cyan-500/30 text-neonCyan text-xs md:text-sm font-bold px-6 py-3 rounded-xl bg-cyan-950/10 hover:bg-cyan-950/30 transition-all duration-300 cursor-pointer html-light:border-gray-300 html-light:text-gray-700 html-light:bg-transparent html-light:hover:bg-gray-200">
+            {/* CONTACT ME -> scroll halus ke section #contact */}
+            <button
+              onClick={scrollToContact}
+              className="px-6 py-3 text-xs font-bold transition-all duration-300 border cursor-pointer border-cyan-500/30 text-neonCyan md:text-sm rounded-xl bg-cyan-950/10 hover:bg-cyan-950/30 html-light:border-gray-300 html-light:text-gray-700 html-light:bg-transparent html-light:hover:bg-gray-200"
+            >
               Contact Me
             </button>
           </div>
         </div>
 
         {/* SISI KANAN (FOTO PROFILE & ORNAMEN) */}
-        <div className="flex-1 flex justify-center relative">
+        <div className="relative flex justify-center flex-1">
           {/* Ornamen Layers */}
           <div
             className={`absolute bg-[#1b1437] border border-purple-500/20 p-3 rounded-xl shadow-lg transform hover:scale-110 transition-all duration-[1000ms] ease-out z-20 html-light:bg-purple-50 html-light:border-purple-200 ${
@@ -162,7 +188,7 @@ const Hero: React.FC = () => {
             }`}
           >
             {/* Bingkai Foto Dalam */}
-            <div className="w-full h-full rounded-full overflow-hidden border flex items-center justify-center transition-all duration-300 border-gray-700 bg-slate-900 html-light:bg-white html-light:border-gray-300">
+            <div className="flex items-center justify-center w-full h-full overflow-hidden transition-all duration-300 border border-gray-700 rounded-full bg-slate-900 html-light:bg-white html-light:border-gray-300">
               <img
                 src={fotoTiara}
                 alt="Tiara"
