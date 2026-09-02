@@ -1,65 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap");
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&display=swap");
 
 @theme {
-  --font-sans: "Stack Sans Notch", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Instrument Serif", serif;
 
-  /* Warna Tema */
-  --color-darkBg: #0b131f;
-  --color-cardBg: #111a24;
-  --color-neonCyan: #00f3ff;
-  --color-neonBlue: #0066cc;
+  --color-bg: #080808;
+  --color-bg-soft: #111111;
+  --color-text: #f5f5f5;
+  --color-muted: #a1a1aa;
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-glass: rgba(255, 255, 255, 0.05);
 
-  /* Efek Glow */
-  --shadow-neon-glow: 0 0 15px rgba(0, 243, 255, 0.5);
-  --shadow-neon-text: 0 0 10px rgba(0, 243, 255, 0.6);
-}
-
-body {
-  font-family: var(--font-sans);
+  --color-accent-blue: #4e85bf;
+  --color-accent-violet: #8b6bd6;
+  --color-accent-pink: #d66ba8;
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--color-bg);
 }
 
-@keyframes slideFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-150px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
 }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+::selection {
+  background: var(--color-accent-violet);
+  color: white;
 }
 
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* ===== Reusable utility classes ===== */
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-accent-blue), var(--color-accent-violet), var(--color-accent-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.animate-fade-slide-left {
-  animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.border-gradient {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+    linear-gradient(120deg, var(--color-accent-blue), var(--color-accent-violet), var(--color-accent-pink)) border-box;
 }
 
-.animate-fade-slide-right {
-  animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.glass {
+  background: var(--color-glass);
+  border: 1px solid var(--color-line);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Hide scrollbar for marquee tracks but keep page scroll normal */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom cursor: hide native cursor on desktop only when JS adds this class */
+.cursor-none-desktop {
+  cursor: none;
+}
+
+@media (max-width: 767px) {
+  .cursor-none-desktop {
+    cursor: auto;
+  }
 }

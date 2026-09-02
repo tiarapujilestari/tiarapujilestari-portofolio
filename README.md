@@ -1,73 +1,54 @@
-# React + TypeScript + Vite
+# Tiara Pujilestari — Portfolio (Motion Redesign)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Premium dark portfolio dibangun dengan React + TypeScript + Vite + Tailwind CSS v4 + Motion for React.
 
-Currently, two official plugins are available:
+## Menjalankan project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Build production:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
+npm run preview
 ```
+
+## Yang PERLU kamu ganti (placeholder)
+
+Semua ditandai `TODO` di kode:
+
+1. **`src/data/projects.ts`** — ganti judul, deskripsi, tech stack, `githubUrl`, `liveUrl` dengan project asli kamu.
+2. **`public/projects/`** — ganti file `.txt` di sini dengan screenshot/gambar project asli (format `.jpg`/`.png`), lalu update path `image` di `src/data/projects.ts` (mis. `/projects/project-1.jpg`).
+3. **`src/data/experience.ts`** — sesuaikan tahun & isi journey/pengalaman kamu.
+4. **GitHub link** — belum ada, tambahkan sendiri di `src/components/layout/Footer.tsx` dan `src/components/sections/Contact.tsx` (cari komentar `TODO`). Email dan LinkedIn sudah terisi data asli.
+5. **Foto profil & CV** — sudah terhubung ke Hero (`src/components/sections/Hero.tsx`), tapi filenya masih **placeholder** (foto abu-abu bertuliskan "REPLACE ME" dan PDF kosong). Ganti langsung file-nya di `src/assets/FOTOPROFILE.png` dan `src/assets/Tiara-Pujilestari-CV-ATS.pdf` dengan file asli kamu — **nama file harus persis sama** supaya tidak perlu ubah kode lagi.
+
+## Form kontak (EmailJS)
+
+Section Contact sudah punya form kirim pesan fungsional pakai `@emailjs/browser`,
+dengan Service ID, Template ID, dan Public Key yang sudah diisi di
+`src/components/sections/Contact.tsx`. Public Key EmailJS memang didesain
+aman untuk ditaruh di sisi client. Kalau kamu ganti akun EmailJS, update
+3 konstanta di bagian atas file tersebut.
+
+## Struktur folder
+
+```
+src/
+  components/
+    layout/     -> Navbar, Footer
+    sections/   -> Hero, About, Skills, Projects, Experience, MarqueeBanner, Contact
+    motion/     -> Reveal, MagneticButton, VelocityMarquee, CustomCursor, ScrollProgress
+    ui/         -> GlassCard, ProjectCard, Button
+  data/         -> projects.ts, skills.ts, experience.ts
+  types/        -> index.ts
+```
+
+## Catatan teknis
+
+- Icon brand (GitHub/LinkedIn logo) sudah tidak tersedia di `lucide-react` versi terbaru (dihapus karena trademark). Saat ini pakai icon generik (`Code2`, `Link2`) sebagai gantinya — kalau mau logo asli, install `simple-icons` atau taruh SVG custom.
+- Custom cursor otomatis nonaktif di mobile/tablet dan saat `prefers-reduced-motion` aktif.
+- Semua animasi scroll pakai `transform`/`opacity` (bukan width/height) untuk performa.

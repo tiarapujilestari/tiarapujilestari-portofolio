@@ -1,24 +1,37 @@
 import React from "react";
-import Navbar from "./component/Navbar";
-import Hero from "./component/Hero";
-import Skills from "./component/Skills";
-import Work from "./component/Work";
-import Timeline from "./component/Timeline";
-import Footer from "./component/Footer";
-import ContactSection from "./component/ContactSection";
+import SmoothScroll from "./components/motion/SmoothScroll";
+import CustomCursor from "./components/motion/CustomCursor";
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
+import Hero from "./components/sections/Hero";
+import About from "./components/sections/About";
+import Skills from "./components/sections/Skills";
+import Work from "./components/sections/Work";
+import Timeline from "./components/sections/Timeline";
+import Contact from "./components/sections/Contact";
 
+/**
+ * Root layout — order matters for the overlap effect: each section
+ * after Hero uses `-mt-16 z-[n] rounded-t-[3rem]` so it visually rises
+ * over the one before it. If you reorder sections, bump z-index
+ * (z-20 → z-30 → z-40 → z-50 ...) so later sections stay on top.
+ */
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-darkBg text-white font-sans selection:bg-neonCyan selection:text-darkBg pt-24 md:pt-32 relative overflow-x-hidden">
-      {/* BACKGROUND DECORATIVE GRID */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
-
+    <div className="bg-[#080808] font-sans antialiased">
+      <SmoothScroll />
+      <CustomCursor />
       <Navbar />
-      <Hero />
-      <Skills />
-      <Work />
-      <Timeline />
-      <ContactSection />
+
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Work />
+        <Timeline />
+        <Contact />
+      </main>
+
       <Footer />
     </div>
   );

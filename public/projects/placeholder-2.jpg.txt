@@ -1,0 +1,2 @@
+Ganti file ini dengan screenshot project asli kamu, lalu ubah nama & extension
+sesuai path di src/data/projects.ts (mis: placeholder-1.jpg -> project-1.jpg).
