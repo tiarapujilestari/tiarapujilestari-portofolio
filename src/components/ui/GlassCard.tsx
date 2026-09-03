@@ -4,22 +4,10 @@ import { motion } from "motion/react";
 interface GlassCardProps {
   children: React.ReactNode;
   className?: string;
-  /** raise + brighten on hover */
   interactive?: boolean;
   as?: "div" | "article";
 }
 
-/**
- * GlassCard — the base "liquid glass" surface used across the site
- * (About panel, project panels, contact card, mobile menu, etc).
- *
- * Composition:
- * - translucent background + backdrop-blur (the "glass")
- * - 1px semi-transparent border (the "edge")
- * - soft ambient shadow (the "depth")
- * - a top highlight line (the "reflection")
- * - on hover (if interactive): brighter surface, stronger border, slight lift
- */
 const GlassCard: React.FC<GlassCardProps> = ({
   children,
   className = "",

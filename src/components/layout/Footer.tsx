@@ -1,6 +1,5 @@
 import React from "react";
 
-/** TODO: confirm these links against your real profiles. */
 const socials = [
   { label: "GitHub", href: "https://github.com/your-username" },
   { label: "LinkedIn", href: "https://linkedin.com/in/your-username" },

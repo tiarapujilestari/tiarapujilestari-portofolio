@@ -9,13 +9,6 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
-/**
- * Navbar — floating glass nav (spec #17).
- * - Fixed, liquid-glass background
- * - Shrinks slightly after the user scrolls past the hero
- * - Hides on scroll-down, reappears on scroll-up
- * - Fullscreen animated menu on mobile
- */
 const Navbar: React.FC = () => {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
@@ -47,7 +40,7 @@ const Navbar: React.FC = () => {
             className="text-sm font-semibold tracking-[0.2em] text-[#F5F5F5]"
             data-cursor="magnetic"
           >
-            TIARA
+            TIARA PUJILESTARI
           </a>
 
           <nav className="hidden md:flex items-center gap-8">

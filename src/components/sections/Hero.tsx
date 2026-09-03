@@ -3,14 +3,8 @@ import { motion, useScroll, useTransform, useReducedMotion } from "motion/react"
 import { ArrowDown } from "lucide-react";
 import { useScrollVelocity } from "../motion/useScrollVelocity";
 import Button from "../ui/Button";
+import profileImg from "../../assets/FOTOPROFILE.png";
 
-/**
- * NOTE ON CONTENT:
- * I could not read the live site's actual copy (it's a client-rendered
- * SPA, the raw HTML has no content). The name/role below are kept from
- * the previous version of this file; replace the tagline/photo with
- * your real bio and asset paths.
- */
 const roles = ["Frontend Developer", "Full Stack Developer"];
 
 const wordVariants = {
@@ -28,8 +22,6 @@ const Hero: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
   const { skew } = useScrollVelocity();
 
-  // Cinematic scroll reaction (spec #6): as the hero scrolls out,
-  // text scales down + fades + blurs, visual scales up + rises.
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -98,7 +90,8 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="mt-8 max-w-md text-base leading-relaxed text-[#A1A1AA] md:text-lg"
           >
-            Building digital experiences where code meets motion. {roles.join(" · ")}.
+            Building digital experiences where code meets motion.{" "}
+            {roles.join(" · ")}.
           </motion.p>
 
           <motion.div
@@ -121,8 +114,13 @@ const Hero: React.FC = () => {
         >
           <motion.div
             style={{ rotate: skew }}
-            className="absolute inset-0 rounded-[3rem] border border-white/10 bg-white/[0.04] backdrop-blur-2xl shadow-[0_20px_80px_rgba(0,0,0,0.5)]"
+            className="absolute inset-0 rounded-[3rem] border border-white/10 bg-white/[0.04] backdrop-blur-2xl shadow-[0_20px_80px_rgba(0,0,0,0.5)] overflow-hidden"
           >
+            <img
+              src={profileImg}
+              alt="Tiara Pujilestari"
+              className="h-full w-full object-cover"
+            />
             <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
             <div className="absolute inset-0 rounded-[3rem] bg-gradient-to-br from-blue-500/10 via-violet-500/10 to-pink-500/10" />
           </motion.div>
@@ -135,7 +133,12 @@ const Hero: React.FC = () => {
           />
           <motion.div
             animate={shouldReduceMotion ? {} : { y: [0, 16, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5,
+            }}
             className="absolute -bottom-8 right-2 h-20 w-20 rounded-full border border-white/10 bg-gradient-to-br from-blue-500/20 to-pink-500/10 backdrop-blur-xl"
           />
         </motion.div>

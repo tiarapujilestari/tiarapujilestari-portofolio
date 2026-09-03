@@ -10,12 +10,6 @@ import Work from "./components/sections/Work";
 import Timeline from "./components/sections/Timeline";
 import Contact from "./components/sections/Contact";
 
-/**
- * Root layout — order matters for the overlap effect: each section
- * after Hero uses `-mt-16 z-[n] rounded-t-[3rem]` so it visually rises
- * over the one before it. If you reorder sections, bump z-index
- * (z-20 → z-30 → z-40 → z-50 ...) so later sections stay on top.
- */
 const App: React.FC = () => {
   return (
     <div className="bg-[#080808] font-sans antialiased">

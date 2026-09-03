@@ -1,17 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, useReducedMotion } from "motion/react";
 
-/**
- * CustomCursor — replaces the native cursor on desktop/mouse devices only.
- * - Small dot by default
- * - Expands + shows "VIEW" text over elements with data-cursor="view"
- * - Slightly enlarges over data-cursor="magnetic" (buttons/links)
- * - Fully disabled on touch devices and under prefers-reduced-motion,
- *   and never blocks the native cursor from working (pointer-events: none).
- *
- * Add this once near the root of the app (e.g. in App.tsx), and tag
- * interactive elements with data-cursor="view" / data-cursor="magnetic".
- */
 const CustomCursor: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
   const [isTouch, setIsTouch] = useState(true); // default true = hidden until confirmed otherwise

@@ -4,10 +4,6 @@ export interface ExperienceItem {
   description?: string;
 }
 
-/**
- * TODO: verify these against your real timeline — kept as given in the
- * brief for now, adjust wording/dates as needed.
- */
 export const experience: ExperienceItem[] = [
   {
     year: "2024",

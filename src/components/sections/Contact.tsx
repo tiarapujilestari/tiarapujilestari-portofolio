@@ -29,11 +29,6 @@ const MailIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
-/**
- * Contact — final CTA, overlapping the section above it.
- * The EmailJS submission logic is unchanged from the original component;
- * only presentation (liquid glass, reveal-in, magnetic socials) is new.
- */
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<SubmitStatus>("idle");

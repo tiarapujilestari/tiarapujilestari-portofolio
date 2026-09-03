@@ -11,11 +11,6 @@ const points = [
   "Problem Solving",
 ];
 
-/**
- * About — overlaps the Hero via negative top margin + higher z-index +
- * rounded top edge (spec #8). Sits inside a GlassCard so the "panel
- * rising over the hero" read is immediate.
- */
 const About: React.FC = () => {
   return (
     <section
@@ -34,9 +29,6 @@ const About: React.FC = () => {
 
           <Reveal direction="up" delay={0.15} duration={0.9} className="mt-10">
             <p className="max-w-2xl text-sm leading-relaxed text-[#A1A1AA] md:text-base">
-              {/* TODO: replace with your real bio — background, what you're
-                  currently learning/building, and what kind of work you're
-                  looking for. */}
               I enjoy turning ideas into clean, functional interfaces —
               balancing solid engineering with careful attention to motion
               and detail. Currently focused on the React/TypeScript

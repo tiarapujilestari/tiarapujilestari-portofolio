@@ -3,7 +3,6 @@ export interface SkillCategory {
   items: string[];
 }
 
-/** From the spec — adjust freely as your real skill set grows. */
 export const skillCategories: SkillCategory[] = [
   {
     label: "Frontend",

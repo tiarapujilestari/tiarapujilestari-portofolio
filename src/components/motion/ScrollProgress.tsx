@@ -1,6 +1,5 @@
 import { motion, useScroll, useSpring } from "motion/react";
 
-/** Thin gradient progress line fixed at the very top of the viewport. */
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 300, damping: 40, restDelta: 0.001 });

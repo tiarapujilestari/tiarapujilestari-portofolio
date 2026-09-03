@@ -21,12 +21,6 @@ const workEthics = [
   },
 ];
 
-/**
- * Skills — overlaps the section above via -mt/z-index (spec #8).
- * Core stack is no longer a static grid: it's two VelocityMarquee rows
- * moving in opposite directions, both speeding up when the page is
- * scrolled quickly (spec #11).
- */
 const Skills: React.FC = () => {
   return (
     <section
@@ -35,7 +29,9 @@ const Skills: React.FC = () => {
     >
       <div className="mx-auto max-w-5xl">
         <Reveal direction="up">
-          <p className="mb-2 text-xs uppercase tracking-[0.35em] text-[#A1A1AA]">Skills</p>
+          <p className="mb-2 text-xs uppercase tracking-[0.35em] text-[#A1A1AA]">
+            Skills
+          </p>
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#F5F5F5]">
             Narrative
           </h2>
@@ -43,11 +39,11 @@ const Skills: React.FC = () => {
 
         <Reveal direction="up" delay={0.1} className="mt-4">
           <p className="max-w-2xl text-sm md:text-base leading-relaxed font-light text-[#A1A1AA]">
-            With a background deeply rooted in both the logic of engineering
-            and the fluidity of design, I approach full-stack development as
-            a craft. I thrive in environments where complex problems meet
-            elegant code solutions. My process is driven by architectural
-            integrity and performance-first thinking.
+            With a background deeply rooted in both the logic of engineering and
+            the fluidity of design, I approach full-stack development as a
+            craft. I thrive in environments where complex problems meet elegant
+            code solutions. My process is driven by architectural integrity and
+            performance-first thinking.
           </p>
         </Reveal>
 
@@ -55,7 +51,10 @@ const Skills: React.FC = () => {
         <div className="mt-14 grid gap-4 sm:grid-cols-2">
           {workEthics.map((item, i) => (
             <Reveal key={item.title} direction="up" delay={0.1 + i * 0.1}>
-              <GlassCard interactive className="flex items-start gap-5 p-5 h-full">
+              <GlassCard
+                interactive
+                className="flex items-start gap-5 p-5 h-full"
+              >
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03]">
                   <item.icon className="h-5 w-5 text-[#F5F5F5]" />
                 </div>
@@ -84,14 +83,14 @@ const Skills: React.FC = () => {
             <VelocityMarquee
               items={rowOne}
               direction="left"
-              baseSpeed={38}
+              baseSpeed={15}
               className="border-y border-white/10 py-4"
               itemClassName="text-2xl md:text-3xl font-semibold tracking-tight text-[#F5F5F5]/90"
             />
             <VelocityMarquee
               items={rowTwo}
               direction="right"
-              baseSpeed={30}
+              baseSpeed={12}
               className="border-b border-white/10 py-4"
               itemClassName="text-2xl md:text-3xl font-semibold tracking-tight text-[#A1A1AA]"
             />

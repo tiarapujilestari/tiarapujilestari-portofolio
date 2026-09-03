@@ -1,15 +1,6 @@
 import React from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 
-/**
- * SmoothScroll — thin scroll-progress bar fixed to the top of the
- * viewport (spec #18). Deliberately NOT hijacking native scroll physics
- * (no Lenis/virtual-scroll library): native scroll is more accessible,
- * more performant, and works correctly with screen readers and
- * keyboard navigation. "Smoothness" instead comes from spring-smoothed
- * scroll-linked transforms in each section (see useScrollVelocity,
- * Parallax, Reveal).
- */
 const SmoothScroll: React.FC = () => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {

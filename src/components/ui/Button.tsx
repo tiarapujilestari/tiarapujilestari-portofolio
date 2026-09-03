@@ -13,11 +13,6 @@ interface ButtonProps {
   className?: string;
 }
 
-/**
- * Button — premium CTA used for "View Project", "Contact Me", nav CTAs.
- * Wraps MagneticButton so every button in the site gets the same
- * cursor-follow + spring-back interaction for free.
- */
 const Button: React.FC<ButtonProps> = ({
   children,
   href,

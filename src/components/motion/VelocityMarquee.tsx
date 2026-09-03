@@ -12,19 +12,23 @@ import {
 } from "motion/react";
 
 interface VelocityMarqueeProps {
-  text: string;
+  items?: string[];
+  text?: string;
+  direction?: "left" | "right";
   baseVelocity?: number;
+  baseSpeed?: number;
   className?: string;
+  itemClassName?: string;
 }
 
-/**
- * Continuously scrolling marquee whose speed reacts to page scroll velocity —
- * scroll fast and it accelerates, scroll slow/stop and it settles back to base speed.
- */
 export default function VelocityMarquee({
+  items,
   text,
-  baseVelocity = 3,
+  direction = "left",
+  baseVelocity,
+  baseSpeed,
   className = "",
+  itemClassName = "",
 }: VelocityMarqueeProps) {
   const reduceMotion = useReducedMotion();
   const baseX = useMotionValue(0);
@@ -39,14 +43,17 @@ export default function VelocityMarquee({
   });
 
   const x = useTransform(baseX, (v) => `${wrap(-25, -50, v)}%`);
-  const directionRef = useRef(1);
+  const directionRef = useRef(direction === "left" ? 1 : -1);
+
+  const speed = baseSpeed ?? baseVelocity ?? 3;
+  const content = items ? items.join(" \u2022 ") : (text ?? "");
 
   useAnimationFrame((_, delta) => {
     if (reduceMotion) return;
-    let moveBy = directionRef.current * baseVelocity * (delta / 1000);
+    let moveBy = directionRef.current * speed * (delta / 1000);
     const vf = velocityFactor.get();
-    if (vf < 0) directionRef.current = -1;
-    else if (vf > 0) directionRef.current = 1;
+    if (vf < 0) directionRef.current = direction === "left" ? -1 : 1;
+    else if (vf > 0) directionRef.current = direction === "left" ? 1 : -1;
     moveBy += moveBy * vf;
     baseX.set(baseX.get() + moveBy);
   });
@@ -58,8 +65,8 @@ export default function VelocityMarquee({
         className="inline-flex whitespace-nowrap"
       >
         {Array.from({ length: 4 }).map((_, i) => (
-          <span key={i} className="inline-block mx-6">
-            {text}
+          <span key={i} className={`inline-block mx-6 ${itemClassName}`}>
+            {content}
           </span>
         ))}
       </motion.div>

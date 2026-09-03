@@ -89,11 +89,6 @@ const projects: Project[] = [
   },
 ];
 
-/**
- * Work — the strongest section after the Hero (spec #12/#13).
- * Large editorial panels (image + text), parallax on the thumbnail,
- * liquid-glass modal gallery for the full case study screenshots.
- */
 const Work: React.FC = () => {
   const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -124,7 +119,9 @@ const Work: React.FC = () => {
     >
       <div className="mx-auto max-w-5xl">
         <Reveal direction="up" className="mb-16">
-          <p className="mb-2 text-xs uppercase tracking-[0.35em] text-[#A1A1AA]">Selected Work</p>
+          <p className="mb-2 text-xs uppercase tracking-[0.35em] text-[#A1A1AA]">
+            Selected Work
+          </p>
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#F5F5F5]">
             Projects
           </h2>
@@ -155,7 +152,7 @@ const Work: React.FC = () => {
                         src={project.thumbnail}
                         alt={project.title}
                         loading="lazy"
-                        className="h-full w-full object-cover opacity-90 grayscale-[15%] transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
+                        className="h-full w-full object-contain opacity-90 grayscale-[15%] transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
                       />
                     </div>
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -165,7 +162,9 @@ const Work: React.FC = () => {
 
                 {/* TEXT */}
                 <div className="w-full space-y-5 lg:w-2/5">
-                  <span className="text-xs tracking-[0.3em] text-[#A1A1AA]">{project.index}</span>
+                  <span className="text-xs tracking-[0.3em] text-[#A1A1AA]">
+                    {project.index}
+                  </span>
                   <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#F5F5F5]">
                     {project.title}
                   </h3>
@@ -187,24 +186,35 @@ const Work: React.FC = () => {
                         <Flag className="h-3.5 w-3.5" />
                         Situation
                       </div>
-                      <p className="text-xs leading-relaxed text-[#A1A1AA]">{project.situation}</p>
+                      <p className="text-xs leading-relaxed text-[#A1A1AA]">
+                        {project.situation}
+                      </p>
                     </GlassCard>
                     <GlassCard className="p-4">
                       <div className="mb-1 flex items-center gap-2 text-[10px] font-bold uppercase text-[#F5F5F5]">
                         <ClipboardList className="h-3.5 w-3.5" />
                         Tujuan
                       </div>
-                      <p className="text-xs leading-relaxed text-[#A1A1AA]">{project.tujuan}</p>
+                      <p className="text-xs leading-relaxed text-[#A1A1AA]">
+                        {project.tujuan}
+                      </p>
                     </GlassCard>
                   </div>
 
                   <div className="flex flex-wrap gap-3 pt-2">
                     {project.liveUrl && (
-                      <Button href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                      <Button
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Live Demo
                       </Button>
                     )}
-                    <Button onClick={() => openModal(project.id)} variant="ghost">
+                    <Button
+                      onClick={() => openModal(project.id)}
+                      variant="ghost"
+                    >
                       View Case Study
                     </Button>
                   </div>
@@ -298,7 +308,9 @@ const Work: React.FC = () => {
                     key={idx}
                     onClick={() => setCurrentImageIndex(idx)}
                     className={`h-2 rounded-full transition-all duration-300 ${
-                      idx === currentImageIndex ? "w-8 bg-[#F5F5F5]" : "w-2 bg-white/20"
+                      idx === currentImageIndex
+                        ? "w-8 bg-[#F5F5F5]"
+                        : "w-2 bg-white/20"
                     }`}
                   />
                 ))}

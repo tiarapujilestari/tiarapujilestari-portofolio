@@ -22,13 +22,13 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         {/* Visual */}
         <div
           data-cursor="view"
-          className="group relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/10 bg-[var(--color-bg-soft)] md:w-1/2"
+          className="group relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-[var(--color-bg-soft)] md:w-1/2"
         >
           <motion.img
             src={project.image}
             alt={project.title}
             loading="lazy"
-            className="object-cover w-full h-full"
+            className="h-full w-full object-contain"
             initial={{ scale: 1.08 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}

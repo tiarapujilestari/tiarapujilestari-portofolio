@@ -9,9 +9,7 @@ interface RevealProps {
   delay?: number;
   duration?: number;
   className?: string;
-  /** animate once, or every time it enters the viewport */
   once?: boolean;
-  /** how much of the element must be visible before it plays */
   amount?: number;
   as?: keyof typeof motion;
 }
@@ -24,12 +22,6 @@ const offsets: Record<RevealDirection, { x: number; y: number }> = {
   none: { x: 0, y: 0 },
 };
 
-/**
- * Reveal — the single building block for every "fade/slide/blur in on
- * scroll" moment in the site (About statement, section headers, project
- * panels, timeline items, etc). Centralizing this keeps every section's
- * entrance motion consistent instead of hand-rolled per component.
- */
 const Reveal: React.FC<RevealProps> = ({
   children,
   direction = "up",

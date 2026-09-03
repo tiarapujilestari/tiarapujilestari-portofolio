@@ -8,16 +8,9 @@ interface MagneticButtonProps {
   target?: string;
   rel?: string;
   className?: string;
-  /** how strongly the button follows the cursor (px) */
   strength?: number;
 }
 
-/**
- * MagneticButton — button/link that subtly follows the cursor while
- * hovered, then springs back. Disabled automatically on touch devices
- * (magnetism only makes sense with a real pointer) and under
- * prefers-reduced-motion.
- */
 const MagneticButton: React.FC<MagneticButtonProps> = ({
   children,
   onClick,

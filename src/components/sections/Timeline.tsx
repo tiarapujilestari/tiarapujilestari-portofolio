@@ -50,11 +50,6 @@ const testimonials = [
   },
 ];
 
-/**
- * Experience — the timeline's vertical line grows from 0% to 100%
- * height as this section scrolls through the viewport (spec #14),
- * driven purely by useScroll + useTransform (no state, no re-renders).
- */
 const Timeline: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
