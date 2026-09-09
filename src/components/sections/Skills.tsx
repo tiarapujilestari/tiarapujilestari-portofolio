@@ -83,14 +83,14 @@ const Skills: React.FC = () => {
             <VelocityMarquee
               items={rowOne}
               direction="left"
-              baseSpeed={15}
+              baseSpeed={10}
               className="border-y border-white/10 py-4"
               itemClassName="text-2xl md:text-3xl font-semibold tracking-tight text-[#F5F5F5]/90"
             />
             <VelocityMarquee
               items={rowTwo}
               direction="right"
-              baseSpeed={12}
+              baseSpeed={8}
               className="border-b border-white/10 py-4"
               itemClassName="text-2xl md:text-3xl font-semibold tracking-tight text-[#A1A1AA]"
             />

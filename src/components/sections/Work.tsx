@@ -33,6 +33,13 @@ import bokvraBlog from "../../assets/bokvra-blog.png";
 import bokvraTentangKami from "../../assets/bokvra-tentang-kami.png";
 import bokvraMenuLayanan from "../../assets/bokvra-menu-layanan.png";
 
+// ===== Project 4: Festify — Event Booking Platform =====
+import festifyHome from "../../assets/festify-home.png";
+import festifyLogin from "../../assets/festify-login.png";
+import festifyExplore from "../../assets/festify-explore.png";
+import festifyDetail from "../../assets/festify-detail.png";
+import festifyProfile from "../../assets/festify-profile.png";
+
 interface Project {
   id: string;
   index: string;
@@ -57,9 +64,19 @@ const projects: Project[] = [
       "Tercapainya pemesanan makanan sesuai dengan yang dibutuhkan oleh rumah sakit dan sesuai dengan pantangan ataupun gizi yang dihitung oleh ahli gizi.",
     thumbnail: projectTiara,
     images: [
-      projectTiara, mockupGambar2, mockupGambar3, mockupGambar4, mockupGambar5,
-      mockupGambar6, mockupGambar7, mockupGambar8, mockupGambar9, mockupGambar10,
-      mockupGambar11, mockupGambar12, mockupGambar13,
+      projectTiara,
+      mockupGambar2,
+      mockupGambar3,
+      mockupGambar4,
+      mockupGambar5,
+      mockupGambar6,
+      mockupGambar7,
+      mockupGambar8,
+      mockupGambar9,
+      mockupGambar10,
+      mockupGambar11,
+      mockupGambar12,
+      mockupGambar13,
     ],
   },
   {
@@ -72,7 +89,12 @@ const projects: Project[] = [
     tujuan:
       "Menghadirkan Sistem Informasi Manajemen (SIM) berbasis web dengan hak akses login per role, modul stok gudang dengan filter departemen & gudang, transaksi Daily Request (DR) antar departemen lengkap dengan status approval dan cetak, serta laporan pembelian dan supplier yang terintegrasi dalam satu dashboard.",
     thumbnail: simCpnDashboard,
-    images: [simCpnLogin, simCpnDashboard, simCpnStokGudang, simCpnDailyRequest],
+    images: [
+      simCpnLogin,
+      simCpnDashboard,
+      simCpnStokGudang,
+      simCpnDailyRequest,
+    ],
   },
   {
     id: "bokvra-coffee-resto",
@@ -86,6 +108,34 @@ const projects: Project[] = [
     thumbnail: bokvraBeranda,
     images: [bokvraBeranda, bokvraTentangKami, bokvraMenuLayanan, bokvraBlog],
     liveUrl: "https://bokvra-space.vercel.app/",
+  },
+  {
+    id: "festify-event-platform",
+    index: "04",
+    title: "Festify — Discover & Book Events",
+    tech: [
+      "React",
+      "TypeScript",
+      "Express.js",
+      "PostgreSQL",
+      "Prisma",
+      "Cloudinary",
+      "Vercel",
+      "Render",
+    ],
+    situation:
+      "Banyak orang kesulitan menemukan dan memesan tiket event (konser, workshop, konferensi) karena informasinya tersebar di berbagai platform berbeda, tanpa sistem terpusat untuk pencarian, pemesanan, dan manajemen tiket yang mudah diakses.",
+    tujuan:
+      "Membangun platform full-stack yang memungkinkan pengguna menjelajahi ratusan event, memesan tiket dengan aman melalui autentikasi JWT & Google OAuth, serta menyediakan dashboard bagi organizer untuk mengelola event dan penjualan tiket secara real-time.",
+    thumbnail: festifyHome,
+    images: [
+      festifyHome,
+      festifyLogin,
+      festifyExplore,
+      festifyDetail,
+      festifyProfile,
+    ],
+    liveUrl: "https://festifyid.vercel.app/",
   },
 ];
 
