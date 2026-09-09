@@ -34,11 +34,11 @@ import bokvraTentangKami from "../../assets/bokvra-tentang-kami.png";
 import bokvraMenuLayanan from "../../assets/bokvra-menu-layanan.png";
 
 // ===== Project 4: Festify — Event Booking Platform =====
-import festifyHome from "../../assets/festify-home.png";
-import festifyLogin from "../../assets/festify-login.png";
-import festifyExplore from "../../assets/festify-explore.png";
-import festifyDetail from "../../assets/festify-detail.png";
-import festifyProfile from "../../assets/festify-profile.png";
+import festifyHome from "../../assets/festifyhome.png";
+import festifyLogin from "../../assets/festifylogin.png";
+import festifyExplore from "../../assets/festifyexplore.png";
+import festifyDetail from "../../assets/festifydetail.png";
+import festifyProfile from "../../assets/festifyprofile.png";
 
 interface Project {
   id: string;
