@@ -14,7 +14,7 @@ const points = [
 const About: React.FC = () => {
   return (
     <section
-      id="about-section"
+      id="about"
       className="relative z-30 -mt-16 rounded-t-[3rem] bg-[#080808] px-6 pb-24 pt-20 md:px-16"
     >
       <div className="mx-auto max-w-5xl">

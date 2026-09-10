@@ -1,5 +1,10 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "motion/react";
 import { ArrowDown } from "lucide-react";
 import { useScrollVelocity } from "../motion/useScrollVelocity";
 import Button from "../ui/Button";
@@ -13,7 +18,11 @@ const wordVariants = {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.8, delay: 0.15 * i, ease: [0.16, 1, 0.3, 1] as const },
+    transition: {
+      duration: 0.8,
+      delay: 0.15 * i,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
   }),
 };
 
@@ -27,13 +36,29 @@ const Hero: React.FC = () => {
     offset: ["start start", "end start"],
   });
 
-  const textScale = useTransform(scrollYProgress, [0, 1], [1, shouldReduceMotion ? 1 : 0.85]);
+  const textScale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [1, shouldReduceMotion ? 1 : 0.85],
+  );
   const textOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const textBlur = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : 10]);
+  const textBlur = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, shouldReduceMotion ? 0 : 10],
+  );
   const textFilter = useTransform(textBlur, (b) => `blur(${b}px)`);
 
-  const visualScale = useTransform(scrollYProgress, [0, 1], [1, shouldReduceMotion ? 1 : 1.15]);
-  const visualY = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : -100]);
+  const visualScale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [1, shouldReduceMotion ? 1 : 1.15],
+  );
+  const visualY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, shouldReduceMotion ? 0 : -100],
+  );
 
   return (
     <section
@@ -100,7 +125,13 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.7, delay: 0.75 }}
             className="mt-10 flex flex-wrap gap-4"
           >
-            <Button href="#projects">View Work</Button>
+            <Button
+              href="/src/assets/Tiara-Pujilestari-CV-ATS.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View CV
+            </Button>
             <Button href="#contact" variant="ghost">
               Let's Talk
             </Button>

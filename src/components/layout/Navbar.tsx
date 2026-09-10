@@ -1,42 +1,44 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "motion/react";
 import { Menu, X } from "lucide-react";
 
 const links = [
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#work" },
   { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#work" },
   { label: "Contact", href: "#contact" },
 ];
 
 const Navbar: React.FC = () => {
   const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
   const [shrunk, setShrunk] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const lastY = React.useRef(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setShrunk(latest > 80);
-    const diff = latest - lastY.current;
-    if (latest > 200 && diff > 4) setHidden(true);
-    else if (diff < -4) setHidden(false);
-    lastY.current = latest;
   });
 
   return (
     <>
-      <motion.header
-        animate={{ y: hidden ? -100 : 0 }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-3xl"
-      >
+      <motion.header className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-3xl">
         <motion.div
-          animate={{ paddingTop: shrunk ? 8 : 14, paddingBottom: shrunk ? 8 : 14 }}
+          animate={{
+            paddingTop: shrunk ? 8 : 14,
+            paddingBottom: shrunk ? 8 : 14,
+          }}
           className="flex items-center justify-between rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-xl px-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)]"
         >
           <a
-            href="#about"
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href = "/";
+            }}
             className="text-sm font-semibold tracking-[0.2em] text-[#F5F5F5]"
             data-cursor="magnetic"
           >
@@ -74,7 +76,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
             exit={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[60] bg-[#080808] flex flex-col"
+            className="fixed inset-0 z-[110] bg-[#080808] flex flex-col"
           >
             <div className="flex justify-end p-6">
               <button
@@ -93,7 +95,11 @@ const Navbar: React.FC = () => {
                   onClick={() => setMenuOpen(false)}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.08, duration: 0.5, ease: "easeOut" }}
+                  transition={{
+                    delay: 0.1 + i * 0.08,
+                    duration: 0.5,
+                    ease: "easeOut",
+                  }}
                   className="text-4xl font-semibold tracking-tight text-[#F5F5F5]"
                 >
                   {link.label}
