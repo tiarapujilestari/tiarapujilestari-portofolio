@@ -1,9 +1,9 @@
 import React from "react";
 
 const socials = [
-  { label: "GitHub", href: "https://github.com/your-username" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/your-username" },
-  { label: "Email", href: "mailto:your-email@example.com" },
+  { label: "GitHub", href: "https://github.com/tiarapujilestari" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/tiarapujilestari9/" },
+  { label: "Email", href: "mailto:tiarapujilestari009@gmail.com" },
 ];
 
 const Footer: React.FC = () => {

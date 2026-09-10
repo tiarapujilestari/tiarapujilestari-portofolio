@@ -126,14 +126,20 @@ const Hero: React.FC = () => {
             className="mt-10 flex flex-wrap gap-4"
           >
             <Button
-              href="/src/assets/Tiara-Pujilestari-CV-ATS.pdf"
+              href="/Tiara-Pujilestari-CV-ATS.pdf"
               target="_blank"
+              download
               rel="noopener noreferrer"
             >
-              View CV
+              Download CV
             </Button>
-            <Button href="#contact" variant="ghost">
-              Let's Talk
+            <Button
+              href="/Tiara-Pujilestari-CV-ATS.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="ghost"
+            >
+              View CV
             </Button>
           </motion.div>
         </div>

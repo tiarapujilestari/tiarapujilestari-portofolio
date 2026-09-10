@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SmoothScroll from "./components/motion/SmoothScroll";
 import CustomCursor from "./components/motion/CustomCursor";
 import Navbar from "./components/layout/Navbar";
@@ -11,6 +11,13 @@ import Timeline from "./components/sections/Timeline";
 import Contact from "./components/sections/Contact";
 
 const App: React.FC = () => {
+  useEffect(() => {
+    if (window.location.hash) {
+      window.history.replaceState(null, "", "/");
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="bg-[#080808] font-sans antialiased">
       <SmoothScroll />

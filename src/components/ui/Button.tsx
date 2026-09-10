@@ -7,6 +7,7 @@ interface ButtonProps {
   href?: string;
   target?: string;
   rel?: string;
+  download?: boolean | string;
   onClick?: () => void;
   variant?: "primary" | "ghost";
   showArrow?: boolean;
@@ -18,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   href,
   target,
   rel,
+  download,
   onClick,
   variant = "primary",
   showArrow = true,
@@ -32,13 +34,18 @@ const Button: React.FC<ButtonProps> = ({
       : "bg-white/[0.03] text-[#F5F5F5] border border-white/15 hover:border-white/35 hover:bg-white/[0.08]";
 
   return (
-    <MagneticButton href={href} target={target} rel={rel} onClick={onClick} className={className}>
+    <MagneticButton
+      href={href}
+      target={target}
+      rel={rel}
+      download={download}
+      onClick={onClick}
+      className={className}
+    >
       <span className={`${base} ${styles}`} data-cursor="magnetic">
         {children}
         {showArrow && (
-          <ArrowUpRight
-            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
+          <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         )}
       </span>
     </MagneticButton>

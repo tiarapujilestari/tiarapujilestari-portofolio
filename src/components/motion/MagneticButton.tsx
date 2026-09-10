@@ -1,5 +1,10 @@
 import React, { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "motion/react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useReducedMotion,
+} from "motion/react";
 
 interface MagneticButtonProps {
   children: React.ReactNode;
@@ -7,6 +12,7 @@ interface MagneticButtonProps {
   href?: string;
   target?: string;
   rel?: string;
+  download?: boolean | string;
   className?: string;
   strength?: number;
 }
@@ -17,13 +23,16 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({
   href,
   target,
   rel,
+  download,
   className = "",
   strength = 0.35,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const [isTouch] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(pointer: coarse)").matches,
   );
 
   const x = useMotionValue(0);
@@ -60,7 +69,13 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({
 
   if (href) {
     return (
-      <a href={href} target={target} rel={rel} className="inline-block">
+      <a
+        href={href}
+        target={target}
+        rel={rel}
+        download={download}
+        className="inline-block"
+      >
         {Content}
       </a>
     );
